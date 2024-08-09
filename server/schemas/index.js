@@ -1,4 +1,4 @@
-const tripModel = require("../models/tripModel");
-const userModel = require("../models/userModel");
+const typeDefs = require("./typeDefs");
+const resolvers = require("./resolvers");
 
-module.exports = { tripModel, userModel };
+module.exports = { typeDefs, resolvers };
