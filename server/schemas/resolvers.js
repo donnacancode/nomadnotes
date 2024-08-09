@@ -1,3 +1,7 @@
+import { AuthenticationError } from 'apollo-server-express';
+import userModel from './models/userModel';
+import { signToken } from './utils/auth';
+
 const resolvers = {
   Query: {
     // Query to fetch all users
@@ -5,11 +9,11 @@ const resolvers = {
       return await userModel.find({});
     },
     // Query to fetch a single user by ID
-    user: async (parent, { id }) => {
+    user: async (_, { id }) => {
       return await userModel.findById(id);
     },
     // Query to fetch the currently authenticated user
-    me: async (parent, args, context) => {
+    me: async (_, __, context) => {
       if (context.user) {
         return await userModel
           .findById(context.user._id)
@@ -21,13 +25,13 @@ const resolvers = {
 
   Mutation: {
     // Mutation for adding a new user
-    addUser: async (parent, { username, email, password }) => {
+    addUser: async (_, { username, email, password }) => {
       const user = await userModel.create({ username, email, password });
       const token = signToken(user);
       return { token, user };
     },
     // Mutation for logging in an existing user
-    loginUser: async (parent, { email, password }) => {
+    loginUser: async (_, { email, password }) => {
       const user = await userModel.findOne({ email });
 
       if (!user) {
@@ -46,4 +50,4 @@ const resolvers = {
   },
 };
 
-module.exports = resolvers;
+export default resolvers;
