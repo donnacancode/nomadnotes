@@ -1,0 +1,44 @@
+/* Reset default styles */
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set a default font family */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Set a default background color */
+body {
+    background-color: #f5f5f5;
+}
+
+/* Add global styles for links */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Add global styles for headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Add global styles for buttons */
+button {
+    cursor: pointer;
+}
+
+/* Add any additional global styles here */
