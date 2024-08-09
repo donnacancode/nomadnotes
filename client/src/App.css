@@ -15,6 +15,43 @@ body {
     background-color: #f5f5f5;
 }
 
+/* Add global styles for the header */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    /* text-align: center; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.dropdown {
+    position: relative;
+    display: flex;
+}
+
+.dropbtn {
+    margin-right: 10px;
+}
+
+.navlink1 {
+    margin-right: 10px;
+}
+
+.navlink2 {
+    margin-right: 10px;
+}
+
+.navlink3 {
+    margin-right: 10px;
+}
+
+
 /* Add global styles for links */
 a {
     color: #007bff;
