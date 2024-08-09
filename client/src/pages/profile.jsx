@@ -1,10 +1,14 @@
 import React from 'react';
-import './styles.css';
+import Header from '../components/header';
+import Footer from '../components/footer';
+
 
 const Profile = ({ username }) => {
     return (
         <div>
-            {/* Include header */}
+            <div>
+                <Header />
+            </div>
             <div id="header">
                 {/* Include header.html */}
                 {/* Add your header content here */}
@@ -44,10 +48,8 @@ const Profile = ({ username }) => {
                 {/* Add your user icon here */}
             </div>
 
-            {/* Include footer */}
-            <div id="footer">
-                {/* Include footer.html */}
-                {/* Add your footer content here */}
+            <div>
+                <Footer />
             </div>
         </div>
     );

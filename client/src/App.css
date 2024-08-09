@@ -42,3 +42,52 @@ button {
 }
 
 /* Add any additional global styles here */
+
+.form-input {
+    margin-bottom: 1rem;
+}
+
+/* ID's added below */
+#main-content {
+    padding: 1rem;
+}
+
+#friends-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#upcoming-trips-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#previous-trips-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#dream-trips-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#user-icon-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+#footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

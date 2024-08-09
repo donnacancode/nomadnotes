@@ -1,12 +1,14 @@
 import React from 'react';
-import './styles.css';
+import React from 'react';
+import Header from '../components/header';
+import Footer from '../components/footer';
+
 
 const Landing = () => {
     return (
         <div>
             <header>
-                {/* Include header.html here */}
-                {/* Example: <include src="header.html"></include> */}
+                <Header />
             </header>
 
             <main>
@@ -19,9 +21,11 @@ const Landing = () => {
             </main>
 
             <footer>
-                {/* Include footer.html here */}
-                {/* Example: <include src="footer.html"></include> */}
+                <Footer />
             </footer>
         </div>
     );
 }
+
+export default Landing;
+
