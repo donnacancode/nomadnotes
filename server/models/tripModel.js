@@ -1,29 +1,42 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const tripSchema = new mongoose.Schema({
-    location: {
-        type: String,
-        required: true
-    },
-    dates: {
-        type: [Date]
-    },
-    journalEntry: {
-        type: String
-    },
-    comments: {
-        type: [String]
-    }
-    // We will use these if we have time to implement them
-    // ,
-    // todos: {
-    //     type: String
-    // },
-    // weatherAdvisory: {
-    //     type: String
-    // }
+const commentSchema = new mongoose.Schema({
+  comment: {
+    type: String,
+    required: true,
+  },
+  username: {
+    type: String,
+    required: true,
+  },
+  createdDate: {
+    type: Date,
+    // default: Date.now
+  },
 });
 
-const Trip = mongoose.model('Trip', tripSchema);
+const tripSchema = new mongoose.Schema({
+  location: {
+    type: String,
+    required: true,
+  },
+  dates: {
+    type: [Date],
+  },
+  journalEntry: {
+    type: String,
+  },
+  comments: [commentSchema],
+  // We will use these if we have time to implement them
+  // ,
+  // todos: {
+  //     type: String
+  // },
+  // weatherAdvisory: {
+  //     type: String
+  // }
+});
+
+const Trip = mongoose.model("Trip", tripSchema);
 
 module.exports = Trip;
