@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
@@ -13,8 +14,8 @@ const Landing = () => {
         <div className="card">
           <h1>Welcome to Nomad Notes</h1>
           <p>Your Gateway to the World!</p>
-          <button className="signup-btn">Sign up</button>
-          <button className="login-btn">Login</button>
+          <Link to="/login" className="login-btn">Log In</Link>
+          <Link to="/signup" className="login-btn">Sign Up</Link>
         </div>
       </main>
 
