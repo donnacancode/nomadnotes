@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/header';
 import Footer from '../components/footer';
 
@@ -26,19 +27,19 @@ const Profile = ({ username }) => {
 
                 {/* Upcoming trips box */}
                 <div id="upcoming-trips-box">
-                    <h2>Upcoming Trips</h2>
+                    <Link to="/upcomingtrips">Upcoming Trips</Link>
                     {/* Add your upcoming trips list here */}
                 </div>
 
                 {/* Previous trips box */}
                 <div id="previous-trips-box">
-                    <h2>Previous Trips</h2>
+                    <Link to="/previoustrips">Previous Trips</Link>
                     {/* Add your previous trips list here */}
                 </div>
 
                 {/* Dream trips box */}
                 <div id="dream-trips-box">
-                    <h2>Dream Trips</h2>
+                    <Link to="/dreamtrips">Dream Trips</Link>
                     {/* Add your dream trips list here */}
                 </div>
             </div>
