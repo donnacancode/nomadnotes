@@ -3,13 +3,12 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
 import Landing from "./pages/landing";
-import LandingPage from "./gb-front-end/pages/landingPage";
 import DreamTrips from "./pages/dreamTrips.jsx";
 import IndividualTrip from "./pages/individualTrip.jsx";
 import Login from "./pages/login.jsx";
 import PreviousTrips from "./pages/previousTrips.jsx";
 import Profile from "./pages/profile.jsx";
-import Signup from "./pages/signup.jsx";
+import Signup from "../src/components/SignupForm/signupForm.jsx";
 import UpcomingTrips from "./pages/upcomingTrips.jsx";
 import "./index.css";
 
@@ -22,10 +21,6 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Landing />,
-      },
-      {
-        path: "/altlanding",
-        element: <LandingPage />,
       },
       {
         path: "/dreamtrips",
