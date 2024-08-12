@@ -3,7 +3,23 @@ const typeDefs = `
     _id: ID
     username: String
     email: String
-    password: String
+    profile: String
+    trips: [Trip]
+    friends: [User]
+  }
+
+  type Trip {
+    _id: ID
+    location: String
+    journalEntry: String
+    comments: [Comment]
+  }
+
+    type Comment {
+    _id: ID
+    commentText: String
+    createdAt: String
+    username: String
   }
 
   type Auth {
@@ -22,13 +38,6 @@ const typeDefs = `
     loginUser(email: String!, password: String!): Auth
     addComment(commentText: String!): Comment
     removeComment(commentId: ID!): Comment
-  }
-
-  type Comment {
-    _id: ID
-    commentText: String
-    createdAt: String
-    username: String
   }
 `;
 

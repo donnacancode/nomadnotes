@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import Signup from '../components/SignupForm/signupForm';
-import Login from '../components/LoginForm/loginForm';
+import { useState, useEffect } from "react";
+import Signup from "../../components/SignupForm/signupForm";
+import Login from "../../components/LoginForm/loginForm";
 
 function LandingPage() {
   return (
@@ -16,8 +16,7 @@ function LandingPage() {
       <Login />
       <Signup />
     </div>
-
-  )
+  );
 }
 
 export default LandingPage;

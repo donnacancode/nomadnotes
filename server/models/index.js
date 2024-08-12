@@ -1,7 +1,7 @@
-const tripModel = require('./tripModel');
-const userModel = require('./userModel');
+const Trip = require("./tripModel");
+const User = require("./userModel");
 
 module.exports = {
-    tripModel,
-    userModel,
+  Trip,
+  User,
 };
