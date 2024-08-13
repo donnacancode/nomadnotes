@@ -2,14 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
-import Landing from "./pages/landing";
+import Landing from "./pages/landing/landing.jsx";
 import DreamTrips from "./pages/dreamTrips.jsx";
 import IndividualTrip from "./pages/individualTrip.jsx";
 import Login from "./pages/login.jsx";
-import PreviousTrips from "./pages/previousTrips.jsx";
+import PreviousTrips from "./pages/trips/previousTrips.jsx";
 import Profile from "./pages/profile.jsx";
-import Signup from "../src/components/SignupForm/signupForm.jsx";
-import UpcomingTrips from "./pages/upcomingTrips.jsx";
+import SignUp from "./pages/siteEntry/signUp.jsx";
+import UpcomingTrips from "./pages/trips/upcomingTrips.jsx";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/signup",
-        element: <Signup />,
+        element: <SignUp />,
       },
       {
         path: "/upcomingtrips",
