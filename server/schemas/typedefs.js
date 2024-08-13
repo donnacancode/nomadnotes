@@ -1,4 +1,4 @@
-const typeDefs = `
+const typedefs = `
   type User {
     _id: ID
     username: String
@@ -41,4 +41,4 @@ const typeDefs = `
   }
 `;
 
-module.exports = typeDefs;
+module.exports = typedefs;
