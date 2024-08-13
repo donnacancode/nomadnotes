@@ -20,8 +20,13 @@ const tripSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  dates: {
-    type: [Date],
+  startDate: {
+    type: Date,
+    // default: Date.now
+  },
+  endDate: {
+    type: Date,
+    // default: Date.now
   },
   journalEntry: {
     type: String,

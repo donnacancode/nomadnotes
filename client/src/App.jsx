@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import {
   ApolloClient,
@@ -7,8 +6,8 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
-import Profile from "./pages/profile";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({

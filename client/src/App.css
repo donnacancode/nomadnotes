@@ -74,6 +74,11 @@ h6 {
     font-weight: bold;
 }
 
+.head-center {
+    margin: 0%;
+    width: 100%;
+}
+
 /* Add global styles for buttons */
 button {
     cursor: pointer;

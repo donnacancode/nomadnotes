@@ -6,13 +6,18 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    email: {
+        type: String,
+        required: true,
+        //add email varifcation here
+    },
     password: {
         type: String,
         required: true
     },
     profile: {
         type: String,
-        required: true
+        // required: true
     },
     trips: [{
         type: mongoose.Schema.Types.ObjectId,
