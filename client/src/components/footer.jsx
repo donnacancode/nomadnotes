@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
     return (
-        <footer>
+        <footer style={{ textAlign: 'center'}}>
             <div className="left-side">
                 Collaborated by: Vincent, Donna, Destiny, Zach and Greg
             </div>
