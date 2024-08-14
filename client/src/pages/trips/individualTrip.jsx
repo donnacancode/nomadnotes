@@ -2,20 +2,26 @@ import React from 'react';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
 import './trips.css';
+import { GET_TRIP } from '../../graphql/queries';
+import Trip from '../../components/trip';
 
 const IndividualTrip = ({ username }) => {
+
+    const { loading, error, data } = useQuery(GET_TRIP, {
+        variables: {
+            tripId: 'PLACEHOLDER_TRIP_ID' // Replace with the actual trip ID
+        }
+    });
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
+
+    const trip = data.trip;
+
     return (
         <div>
             <Header />
-            <h1>Welcome, {username}</h1>
-            <img src="user-icon.png" alt="User Icon" />
-            <div className="friends-box">
-                <h2>Friends</h2>
-                {/* Display friends here */}
-            </div>
-            <div className="selected-trip-box">
-                {/* Display selected trip here */}
-            </div>
+            <Trip trip={trip} />
             <Footer />
         </div>
     );
