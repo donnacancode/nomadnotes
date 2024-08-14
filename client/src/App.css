@@ -135,3 +135,8 @@ button {
     width: 100%;
 }
 
+.bg {
+    position: relative;
+    background-color: transparent;
+    z-index: -1;
+}
