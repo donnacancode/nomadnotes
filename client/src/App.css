@@ -2,65 +2,64 @@
 /* Global styles */
 body,
 html {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 /* Set a default font family */
 body {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 /* Set a default background color */
 body {
-    background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
 /* Add global styles for the header */
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
-    /* text-align: center; */
-    display: flex;
-    justify-content: space-between;
+  /*background-color: #333;
+    color: #fff;*/
+  padding: 1rem;
+  /* text-align: center; */
+  display: flex;
+  justify-content: space-between;
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .dropdown {
-    position: relative;
-    display: flex;
+  position: relative;
+  display: flex;
 }
 
 .dropbtn {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .navlink1 {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .navlink2 {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .navlink3 {
-    margin-right: 10px;
+  margin-right: 10px;
 }
-
 
 /* Add global styles for links */
 a {
-    color: #007bff;
-    text-decoration: none;
+  color: #007bff;
+  text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* Add global styles for headings */
@@ -70,73 +69,73 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0;
-    font-weight: bold;
+  margin: 0;
+  font-weight: bold;
 }
 
 .head-center {
-    margin: 0%;
-    width: 100%;
+  margin: 0%;
+  width: 100%;
 }
 
 /* Add global styles for buttons */
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 /* Add any additional global styles here */
 
 .form-input {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 /* ID's added below from profile file in components folder */
 #main-content {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 #friends-box {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 #upcoming-trips-box {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 #previous-trips-box {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 #dream-trips-box {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 #user-icon-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
 #footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+  /*background-color: #333;
+    color: #fff;*/
+  text-align: center;
+  padding: 1rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 .bg {
-    position: relative;
-    background-color: transparent;
-    z-index: -1;
+  position: relative;
+  background-color: transparent;
+  z-index: -1;
 }
