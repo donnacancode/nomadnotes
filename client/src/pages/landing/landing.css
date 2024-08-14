@@ -1,0 +1,85 @@
+/* Ensure the entire page takes up the full viewport height */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Style for the main container to make it full screen */
+main {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+/* Style the background image */
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/landingbg.png");
+  background-size: cover; /* Ensures the image covers the entire background */
+  background-position: center; /* Keeps the image centered */
+  background-repeat: no-repeat; /* Prevents repeating the image */
+  opacity: 0.6; /* Adjust the transparency */
+  z-index: -1; /* Places the image behind the content */
+}
+
+/* Style for the text and buttons */
+main > div {
+  z-index: 1; /* Ensures the text and buttons appear above the background image */
+}
+
+h1 {
+  font-family: "Shadows Into Light Two", cursive;
+  font-style: italic;
+  font-size: 10rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Adds a shadow effect */
+}
+
+p {
+  font-family: "Lora", serif;
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-bottom: 8rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Adds a shadow effect */
+}
+
+/* Button styles */
+.btn {
+  background-color: rgba(218, 127, 63, 0.8); /* #da7f3f with transparency */
+  border: none;
+  color: white;
+  padding: 1rem 3rem;
+  font-family: "Shadows Into Light Two", cursive;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transition for smooth effect */
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 5rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow for shading effect */
+}
+
+.btn:hover {
+  background-color: rgba(218, 127, 63, 1); /* Fully opaque on hover */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Slightly larger shadow on hover */
+}
+
+/* Footer styles */
+footer {
+  font-family: "Lora", serif;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
