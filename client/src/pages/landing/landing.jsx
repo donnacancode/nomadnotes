@@ -5,6 +5,7 @@ import Footer from "../../components/footer";
 import { useQuery } from "@apollo/client";
 import { GET_ME } from "../../utils/queries";
 import "./landing.css";
+import landingbg from "../../assets/landingbg.avif";
 
 const Landing = () => {
 
@@ -15,6 +16,7 @@ const Landing = () => {
       </header>
 
       <main>
+        <img src={landingbg} alt="Palm trees" classname="bg" />
         <div style={{ textAlign: 'center'}}>
           <h1>Welcome to Nomad Notes</h1>
           <p>Your Gateway to the World!</p>
