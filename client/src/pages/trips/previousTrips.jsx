@@ -4,28 +4,22 @@ import Footer from '../../components/footer';
 import './trips.css';
 
 const PreviousTrips = () => {
+
+    const { loading, error, data } = useQuery(GET_USER_TRIPS);
+
+                if (loading) return <p>Loading...</p>;
+                if (error) return <p>Error: {error.message}</p>;
+
+                const currentDate = new Date();
+                const previousTrips = data.userTrips.filter(trip => new Date(trip.date) < currentDate);
+
+
     return (
         <div>
             <Header />
-            <header>
-                <h1>Previous Trips</h1>
-                <img src="user-icon.png" alt="User Icon" />
-            </header>
-            <div className="friends-box">
-                <h2>Friends</h2>
-                {/* Friends list goes here */}
-            </div>
-            <div className="previous-trips-container">
-                <div className="previous-trip-box">
-                    {/* First previous trip content goes here */}
-                </div>
-                <div className="previous-trip-box">
-                    {/* Second previous trip content goes here */}
-                </div>
-                <div className="previous-trip-box">
-                    {/* Third previous trip content goes here */}
-                </div>
-            </div>
+            {previousTrips.map(trip => (
+                            <Trip key={trip.id} trip={trip} />
+                        ))}
             <Footer />
         </div>
     );
