@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
 import './profile.css';
+import northern_lights from '../../assets/northern_lights.png';
 
 
 const Profile = ({ username }) => {
@@ -15,7 +16,8 @@ const Profile = ({ username }) => {
                 {/* Include header.html */}
                 {/* Add your header content here */}
             </div>
-
+        <main>
+            <img src={northern_lights} alt="Northern lights" className="profileBg"></img>
             {/* Main content */}
             <div id="main-content">
                 <h1>Welcome {username}</h1>
@@ -49,6 +51,7 @@ const Profile = ({ username }) => {
             <div id="user-icon-box">
                 {/* Add your user icon here */}
             </div>
+            </main>
 
             <div>
                 <Footer />

@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
 import './trips.css';
-import { GET_TRIP } from '../../graphql/queries';
+// import { GET_TRIP } from '../../graphql/queries';
 import Trip from '../../components/trip';
 
 const IndividualTrip = ({ username }) => {
