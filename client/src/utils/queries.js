@@ -1,23 +1,19 @@
-import { gql } from '@apollo/client';
+import { gql } from '@apollo/client';  
 
-export const GET_ME = gql`query Me {
+
+export const GET_USER_TRIPS = gql`
+  query getUserTrips {
     me {
       _id
       username
-    }
-  }`;
-export const GET_USER_TRIPS = gql`
-    query GetUserTrips($userId: ID!) {
-      user(id: $userId) {
-        trips {
-          _id
-          destination
-          startDate
-          endDate
-        }
+      trips {
+        _id
+        location
+        journalEntry
       }
     }
-  `;
+  }
+`;
 
   export const GET_TRIP = gql`
     query GetTrip($tripId: ID!) {

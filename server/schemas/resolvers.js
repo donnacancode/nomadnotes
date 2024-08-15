@@ -1,5 +1,5 @@
 const { User, Trip } = require("../models");
-// const { signToken, AuthenticationError } = require("../utils/auth");
+const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -12,35 +12,15 @@ const resolvers = {
     //   return await User.findById(id);
     // },
     // Query to fetch the currently authenticated user
-    // me: async (_, __, context) => {
-    //   if (context.user) {
-    //     return await User.findById(context.user._id).select("-__v -password");
-    //   }
-    //   throw AuthenticationError;
-    // },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findOne({_id: context.user._id}).populate('trips');
+      }
+      throw AuthenticationError;
+    },
   },
 
   Mutation: {
-    // Mutation for adding a new user
-    addUser: async (parent, args) => {
-      console.log(args)
-      try {  
-        const { username, email, password } = args;  
-        // Create the user with the provided username, email, and password
-        const user = await User.create({ username, email, password });  
-        // If user creation fails, throw an error
-        if (!user) {
-          throw new Error('Something is wrong!');
-        }  
-        // Return the created user object
-        return user;
-      } catch (error) {
-        console.error(error);
-        // You can throw the error to be caught by the client-side, or return a specific error message
-        throw new Error('Failed to create user');
-      }
-    },
-    Mutation: {
     // Mutation for adding a new user
     addUser: async (parent, args) => {
       console.log(args)
@@ -91,7 +71,7 @@ const resolvers = {
         );
         return user;
       } 
-      throw new AuthenticationError('You need to be logged in!');
+      // throw new AuthenticationError('You need to be logged in!');
     }
 
     // addComment: async (_, { commentText }, context) => {},
