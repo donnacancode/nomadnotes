@@ -5,8 +5,10 @@ import Footer from '../../components/footer';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
-import Auth from '../../utils/auth';
+// import Auth from '../../utils/auth';
 import './siteEntry.css';
+
+
 
 const SignUp = () => {
     const [userFormState, setFormState] = useState({
@@ -28,14 +30,29 @@ const SignUp = () => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log(userFormState);
+
 
         try {
-            const { data } = await addUser({
-                variables: { ...userFormState },
-            });
 
-            Auth.login(data.addUser.token, data.addUser.user);
+        const {username, email, password} = userFormState;
+
+      
+
+        const response = await addUser({
+            variables: { username, email, password },
+          });
+
+
+
+        const userId = response.data.addUser._id;
+
+
+  
+        localStorage.setItem('userId', userId);
+  
+        document.location.replace('/profile');
+
+            // Auth.login(data.addUser.token, data.addUser.user);
         } catch (e) {
             console.error(e);
         }
