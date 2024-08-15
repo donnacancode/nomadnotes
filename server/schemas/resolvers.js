@@ -39,24 +39,60 @@ const resolvers = {
         // You can throw the error to be caught by the client-side, or return a specific error message
         throw new Error('Failed to create user');
       }
-    }
+    },
+    Mutation: {
+    // Mutation for adding a new user
+    addUser: async (parent, args) => {
+      console.log(args)
+      try {  
+        const { username, email, password } = args;  
+        // Create the user with the provided username, email, and password
+        const user = await User.create({ username, email, password });  
+        // If user creation fails, throw an error
+        if (!user) {
+          throw new Error('Something is wrong!');
+        }  
+        // Return the created user object and the token
+      const token = signToken(user);
+      return { token, user };
+      } catch (error) {
+        console.error(error);
+        // You can throw the error to be caught by the client-side, or return a specific error message
+        throw new Error('Failed to create user');
+      }
+    },
     // Mutation for logging in an existing user
-    // loginUser: async (_, { email, password }) => {
-    //   const user = await User.findOne({ email });
+    loginUser: async (parent, { username, password }) => {
+      const user = await User.findOne({ username });
 
-    //   if (!user) {
-    //     throw AuthenticationError;
-    //   }
+      if (!user) {
+        throw AuthenticationError;
+      }
 
-    //   const correctPw = await user.isCorrectPassword(password);
+      const correctPw = await user.isCorrectPassword(password);
 
-    //   if (!correctPw) {
-    //     throw AuthenticationError;
-    //   }
+      if (!correctPw) {
+        throw AuthenticationError;
+      }
 
-    //   const token = signToken(user);
-    //   return { token, user };
-    // },
+      const token = signToken(user);
+      return { token, user };
+    },
+    addTrip : async (parent, args, context) => {
+      console.log(args)
+      if(context.user) {
+        const { location, journalEntry } = args;
+        // Create the user with the provided username, email, and password
+        const trip = await Trip.create({ location, journalEntry });
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { trips: trip } },
+          { new: true, runValidators: true }
+        );
+        return user;
+      } 
+      throw new AuthenticationError('You need to be logged in!');
+    }
 
     // addComment: async (_, { commentText }, context) => {},
     // removeComment: async (_, { commentId }, context) => {},
