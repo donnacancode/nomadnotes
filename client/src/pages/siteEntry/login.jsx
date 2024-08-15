@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../../components/header';
 import Footer from '../../components/footer';
 import './siteEntry.css';
 import baobabs from '../../assets/baobabs.png';
@@ -7,10 +6,9 @@ import baobabs from '../../assets/baobabs.png';
 function Login() {
     return (
         <div>
-            <Header />
             <img src={baobabs} alt="Baobabs" className="bg" />
             <div style={{ textAlign: 'center'}}>
-                <h1 style={{ margin: '20px 0' }}>Welcome to Nomad Notes</h1>
+                <h1 style={{ margin: '20px 0', paddingTop: '200px' }}>Welcome to Nomad Notes</h1>
                 <p style={{ margin: '20px 0' }}>Your Gateway to the World</p>
                 <div className="login-box" style={{ margin: '20px 0' }}>
                     <h2 style={{ margin: '20px 0' }}>Login</h2>
