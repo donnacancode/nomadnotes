@@ -5,7 +5,7 @@ import Footer from '../../components/footer';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
-// import Auth from '../../utils/auth';
+import Auth from '../../utils/auth';
 import './siteEntry.css';
 
 
@@ -38,19 +38,11 @@ const SignUp = () => {
 
       
 
-        const response = await addUser({
+        const { data } = await addUser({
             variables: { username, email, password },
           });
-
-
-
-        const userId = response.data.addUser._id;
-
-
-  
-        localStorage.setItem('userId', userId);
-  
-        document.location.replace('/profile');
+        console.log(data);
+          Auth.login(data.addUser.token);
 
             // Auth.login(data.addUser.token, data.addUser.user);
         } catch (e) {
