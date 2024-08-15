@@ -1,5 +1,5 @@
 const { User, Trip } = require("../models");
-const { signToken, AuthenticationError } = require("../utils/auth");
+// const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -8,9 +8,9 @@ const resolvers = {
       return await User.find({});
     },
     // Query to fetch a single user by ID
-    user: async (_, { id }) => {
-      return await User.findById(id);
-    },
+    // user: async (_, { id }) => {
+    //   return await User.findById(id);
+    // },
     // Query to fetch the currently authenticated user
     // me: async (_, __, context) => {
     //   if (context.user) {
@@ -24,21 +24,16 @@ const resolvers = {
     // Mutation for adding a new user
     addUser: async (parent, args) => {
       console.log(args)
-      try {
-  
-        const { username, email, password } = args;
-  
+      try {  
+        const { username, email, password } = args;  
         // Create the user with the provided username, email, and password
-        const user = await User.create({ username, email, password });
-  
-  
+        const user = await User.create({ username, email, password });  
         // If user creation fails, throw an error
         if (!user) {
           throw new Error('Something is wrong!');
-        }
-  
+        }  
         // Return the created user object
-        return { user };
+        return user;
       } catch (error) {
         console.error(error);
         // You can throw the error to be caught by the client-side, or return a specific error message

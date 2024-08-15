@@ -18,13 +18,7 @@ const typeDefs = `
     type Comment {
     _id: ID
     comment: String
-    createdDate: String
     username: String
-  }
-
-  type Auth {
-    token: String
-    user: User
   }
 
   type Query {
@@ -34,11 +28,18 @@ const typeDefs = `
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
-    loginUser(email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): User
+    loginUser(email: String!, password: String!): User
     addComment(commentText: String!): Comment
     removeComment(commentId: ID!): Comment
   }
 `;
 
 module.exports = typeDefs;
+
+
+
+// type Auth {
+//   token: String
+//   user: User
+// }
