@@ -21,6 +21,11 @@ const typeDefs = `
     username: String
   }
 
+  type Auth {
+  token: String
+  user: User
+}
+
   type Query {
     users: [User]
     user(id: ID!): User
@@ -28,8 +33,9 @@ const typeDefs = `
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): User
-    loginUser(email: String!, password: String!): User
+    addUser(username: String!, email: String!, password: String!): Auth
+    loginUser(username: String!, password: String!): Auth
+    addTrip(username: String! location: String!, journalEntry: String!): User
     addComment(commentText: String!): Comment
     removeComment(commentId: ID!): Comment
   }
