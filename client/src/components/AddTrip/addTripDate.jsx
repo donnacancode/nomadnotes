@@ -10,6 +10,8 @@ const AddTrip = () => {
     location: '',
     journalEntry: '',
     tripDate: new Date(),
+    startTripDate: new Date(),
+    endTripDate: new Date(),
   });
 
   const { data: { username } } = Auth.getProfile();
@@ -35,17 +37,18 @@ const AddTrip = () => {
     event.preventDefault();
 
     try {
-      const { location, journalEntry, tripDate } = userFormState;
+      const { location, journalEntry, startTripDate, endTripDate } = userFormState;
       console.log(location, journalEntry, tripDate, username);
 
       const response = await addTrip({
-        variables: { location, journalEntry, tripDate, username },
+        variables: { location, journalEntry, startTripDate, endTripDate, username },
       });
 
       setFormState({
         location: '',
         journalEntry: '',
-        tripDate: new Date(),
+        startTripDate: new Date(),
+        endTripDate: new Date(),
       });
     } catch (e) {
       console.error(e);
