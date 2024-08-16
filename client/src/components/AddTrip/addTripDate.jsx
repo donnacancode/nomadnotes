@@ -6,6 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Auth from '../../utils/auth';
 
 const AddTrip = () => {
+  // Initialize form state with default values for location, journal entry, and trip date.
   const [userFormState, setFormState] = useState({
     location: '',
     journalEntry: '',
@@ -14,10 +15,13 @@ const AddTrip = () => {
     endTripDate: new Date(),
   });
 
+  // Retrieve the logged-in user's username from the authentication profile.
   const { data: { username } } = Auth.getProfile();
 
+  // Define the mutation hook for adding a new trip.
   const [addTrip, { loading, error, data }] = useMutation(ADD_TRIP);
 
+  // Handle input field changes by updating the form state dynamically.
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -26,24 +30,28 @@ const AddTrip = () => {
     });
   };
 
+    // Handle changes to the trip date using the DatePicker component.
   const handleDateChange = (date, fieldName) => {
-    setFormState({
+
+  setFormState({
       ...userFormState,
       [fieldName]: date,
     });
   };
 
+  // Handle form submission to add a new trip.
   const handleFormSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Prevent the default form submission behavior.
 
     try {
       const { location, journalEntry, startTripDate, endTripDate } = userFormState;
-    
 
+      // Make the mutation request to add the trip with the specified variables.
       const response = await addTrip({
         variables: { location, journalEntry, startTripDate, endTripDate, username },
       });
 
+      // Reset the form state to its initial values after successful submission.
       setFormState({
         location: '',
         journalEntry: '',
@@ -51,16 +59,19 @@ const AddTrip = () => {
         endTripDate: new Date(),
       });
     } catch (e) {
-      console.error(e);
+      console.error(e); // Log any errors that occur during the mutation request.
     }
   };
 
   return (
     <div>
       <h4>Add Trip</h4>
+      {/* Display a loading indicator when the mutation is in progress */}
       {loading ? <div>Loading...</div> : null}
       <div>
+        {/* Render the trip submission form */}
         <form onSubmit={handleFormSubmit}>
+          {/* Input field for the trip location */}
           <input
             className="form-input"
             placeholder="Location of trip"
@@ -69,6 +80,7 @@ const AddTrip = () => {
             value={userFormState.location}
             onChange={handleChange}
           />
+          {/* Input field for the journal entry */}
           <input
             className="form-input"
             placeholder="Journal entry"
@@ -77,6 +89,7 @@ const AddTrip = () => {
             value={userFormState.journalEntry}
             onChange={handleChange}
           />
+          {/* Date picker for selecting the trip date */}
           <DatePicker
             selected={userFormState.startTripDate}
             onChange={(date) => handleDateChange(date, 'startTripDate')}
@@ -89,6 +102,7 @@ const AddTrip = () => {
             className="form-input"
             placeholderText='End Date'
           />
+          {/* Submit button for the form */}
           <button style={{ cursor: 'pointer' }} type="submit">
             Submit
           </button>
@@ -99,3 +113,4 @@ const AddTrip = () => {
 };
 
 export default AddTrip;
+
