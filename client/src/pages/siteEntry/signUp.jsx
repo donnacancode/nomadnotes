@@ -27,28 +27,27 @@ const SignUp = () => {
             [name]: value,
         });
     };
-
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
-
         try {
+            const { username, email, password } = userFormState;
 
-        const {username, email, password} = userFormState;
+            const { data } = await addUser({
+                variables: { username, email, password },
+            });
 
-      
-
-        const { data } = await addUser({
-            variables: { username, email, password },
-          });
-        console.log(data);
-          Auth.login(data.addUser.token);
-
-            // Auth.login(data.addUser.token, data.addUser.user);
+            if (data.addUser.token) {
+                Auth.login(data.addUser.token);
+            } else {
+                // User with the same username already exists
+                alert('Username is already taken');
+            }
         } catch (e) {
             console.error(e);
         }
     };
+
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
             <Header />
