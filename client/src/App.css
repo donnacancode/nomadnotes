@@ -2,64 +2,58 @@
 /* Global styles */
 body,
 html {
-  margin: 0;
-  padding: 0;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
 }
 
 /* Set a default font family */
 body {
-  font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif; /* Apply Arial font as default */
 }
 
 /* Set a default background color */
 body {
-  background-color: #f5f5f5;
+  background-color: #f5f5f5; /* Light grey background color for the entire page */
 }
 
 /* Add global styles for the header */
 header {
-  /*background-color: #333;
-    color: #fff;*/
-  padding: 1rem;
-  /* text-align: center; */
-  display: flex;
-  justify-content: space-between;
+  /*background-color: #333; /* Dark background color for the header (commented out) */
+  /*color: #fff; /* White text color for the header (commented out) */
+  padding: 1rem; /* Add padding inside the header */
+  /*text-align: center; /* Center align text in the header (commented out) */
+  display: flex; /* Use flexbox layout for header content */
+  justify-content: space-between; /* Space out items within the header */
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.5rem; /* Increase font size for the logo */
+  font-weight: bold; /* Make the logo text bold */
 }
 
 .dropdown {
-  position: relative;
-  display: flex;
+  position: relative; /* Position dropdown relative to its normal position */
+  display: flex; /* Use flexbox layout for dropdown content */
 }
 
 .dropbtn {
-  margin-right: 10px;
+  margin-right: 10px; /* Add space to the right of the dropdown button */
 }
 
-.navlink1 {
-  margin-right: 10px;
-}
-
-.navlink2 {
-  margin-right: 10px;
-}
-
+.navlink1,
+.navlink2,
 .navlink3 {
-  margin-right: 10px;
+  margin-right: 10px; /* Add space to the right of navigation links */
 }
 
 /* Add global styles for links */
 a {
-  color: #007bff;
-  text-decoration: none;
+  color: #007bff; /* Apply blue color to links */
+  text-decoration: none; /* Remove underline from links */
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: underline; /* Add underline on hover for links */
 }
 
 /* Add global styles for headings */
@@ -69,73 +63,59 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0;
-  font-weight: bold;
+  margin: 0; /* Remove default margin from headings */
+  font-weight: bold; /* Make headings bold */
 }
 
 .head-center {
-  margin: 0%;
-  width: 100%;
+  margin: 0%; /* Remove margin from element with this class */
+  width: 100%; /* Make the element full width */
 }
 
 /* Add global styles for buttons */
 button {
-  cursor: pointer;
+  cursor: pointer; /* Change cursor to pointer when hovering over buttons */
 }
 
 /* Add any additional global styles here */
 
 .form-input {
-  margin-bottom: 1rem;
+  margin-bottom: 1rem; /* Add space below form inputs */
 }
 
 /* ID's added below from profile file in components folder */
 #main-content {
-  padding: 1rem;
+  padding: 1rem; /* Add padding inside the main content area */
 }
 
-#friends-box {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-#upcoming-trips-box {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-#previous-trips-box {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
+#friends-box,
+#upcoming-trips-box,
+#previous-trips-box,
 #dream-trips-box {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: flex; /* Use flexbox layout for these boxes */
+  flex-wrap: wrap; /* Allow items to wrap to the next line if necessary */
+  justify-content: space-between; /* Space out items within the boxes */
 }
 
 #user-icon-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1rem;
+  display: flex; /* Use flexbox layout for user icon container */
+  justify-content: center; /* Center-align items horizontally */
+  align-items: center; /* Center-align items vertically */
+  margin-bottom: 1rem; /* Add space below the user icon container */
 }
 
 #footer {
-  /*background-color: #333;
-    color: #fff;*/
-  text-align: center;
-  padding: 1rem;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+  /*background-color: #333; /* Dark background color for the footer (commented out) */
+  /*color: #fff; /* White text color for the footer (commented out) */
+  text-align: center; /* Center-align text in the footer */
+  padding: 1rem; /* Add padding inside the footer */
+  position: fixed; /* Fix the footer to the bottom of the viewport */
+  bottom: 0; /* Position the footer at the bottom of the viewport */
+  width: 100%; /* Make the footer full width */
 }
 
 .bg {
-  position: relative;
-  background-color: transparent;
-  z-index: -1;
+  position: relative; /* Position background relative to its normal position */
+  background-color: transparent; /* Set transparent background color */
+  z-index: -1; /* Place background behind other content */
 }
