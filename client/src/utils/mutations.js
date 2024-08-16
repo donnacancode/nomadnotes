@@ -4,11 +4,11 @@ import { gql } from '@apollo/client'; // Import gql from Apollo Client to define
 export const ADD_USER = gql`
   mutation AddUser($username: String!, $email: String!, $password: String!) {
     addUser(username: $username, email: $email, password: $password) {
-      token // Returns the authentication token for the new user
+      token
       user {
-        _id // Returns the user ID
-        username // Returns the user's username
-        email // Returns the user's email
+        _id
+        username
+        email
       }
     }
   }
@@ -18,10 +18,10 @@ export const ADD_USER = gql`
 export const LOGIN_USER = gql`
   mutation loginUser($username: String!, $password: String!) {
     loginUser(username: $username, password: $password) {
-      token // Returns the authentication token for the logged-in user
+      token
       user {
-        _id // Returns the user ID
-        username // Returns the user's username
+        _id
+        username
       }
     }
   }
@@ -30,14 +30,13 @@ export const LOGIN_USER = gql`
 // Mutation to add a new trip
 export const ADD_TRIP = gql`
 
-mutation AddTrip($username: String!, $location: String!, $journalEntry: String!, $startTripDate: Date!, $endTripDate: Date!) {
-  addTrip(username: $username, location: $location, journalEntry: $journalEntry, startTripDate: $startTripDate, endTripDate: $endTripDate) {
+mutation AddTrip($username: String!, $location: String!, $journalEntry: String!) {
+  addTrip(username: $username, location: $location, journalEntry: $journalEntry) {
     username
     trips {
       location
       journalEntry
-      startTripDate
-      endTripDate
+      }
     }
   }
 `
