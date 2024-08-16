@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { ADD_TRIP } from '../../utils/mutations';
+import { ADD_TRIP } from '../utils/mutations';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import Auth from '../../utils/auth';
+import Auth from '../utils/auth';
 
-const AddTrip = () => {
+const AddTrip = (props) => {
   // Initialize form state with default values for location, journal entry, and trip date.
   const [userFormState, setFormState] = useState({
     location: '',
     journalEntry: '',
-    tripDate: new Date(),
-    startTripDate: new Date(),
-    endTripDate: new Date(),
+    // tripDate: new Date(),
+    // startTripDate: new Date(),
+    // endTripDate: new Date(),
   });
 
   // Retrieve the logged-in user's username from the authentication profile.
@@ -44,20 +44,22 @@ const AddTrip = () => {
     event.preventDefault(); // Prevent the default form submission behavior.
 
     try {
-      const { location, journalEntry, startTripDate, endTripDate } = userFormState;
+      const { location, journalEntry } = userFormState;
 
       // Make the mutation request to add the trip with the specified variables.
       const response = await addTrip({
-        variables: { location, journalEntry, startTripDate, endTripDate, username },
+        variables: { location, journalEntry, username },
       });
 
       // Reset the form state to its initial values after successful submission.
       setFormState({
         location: '',
         journalEntry: '',
-        startTripDate: new Date(),
-        endTripDate: new Date(),
+        // startTripDate: new Date(),
+        // endTripDate: new Date(),
       });
+      props.loadUserTrips();
+      window.location.reload();
     } catch (e) {
       console.error(e); // Log any errors that occur during the mutation request.
     }
@@ -90,7 +92,7 @@ const AddTrip = () => {
             onChange={handleChange}
           />
           {/* Date picker for selecting the trip date */}
-          <DatePicker
+          {/* <DatePicker
             selected={userFormState.startTripDate}
             onChange={(date) => handleDateChange(date, 'startTripDate')}
             className="form-input"
@@ -101,7 +103,7 @@ const AddTrip = () => {
             onChange={(date) => handleDateChange(date, 'endTripDate')}
             className="form-input"
             placeholderText='End Date'
-          />
+          /> */}
           {/* Submit button for the form */}
           <button style={{ cursor: 'pointer' }} type="submit">
             Submit

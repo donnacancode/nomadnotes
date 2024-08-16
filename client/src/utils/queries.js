@@ -22,5 +22,4 @@ export const GET_USER_TRIPS = gql`
         destination
       }
     }
-  `;
-
+  `

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Auth from '../utils/auth'
 
 const Header = () => {
     return (
@@ -13,7 +14,7 @@ const Header = () => {
                 {/* Dropdown menu for exploration options */}
                 <div className="dropdown">
                     {/* Button that triggers the dropdown */}
-                    <button className="dropbtn">Explore</button>
+                    <button classname="logout-btn" onClick={Auth.logout}>Logout</button>
                 </div>
             </nav>
         </header>
