@@ -20,10 +20,7 @@ export const GET_USER_TRIPS = gql`
       trip(id: $tripId) {
         _id
         destination
-
       }
     }
   `;
 
-//   startTripDate
-//   endTripDate

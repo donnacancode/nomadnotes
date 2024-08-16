@@ -1,5 +1,6 @@
 // Define the GraphQL schema using SDL (Schema Definition Language)
 const typeDefs = `
+
   type User {
     _id: ID  
     username: String  
@@ -11,10 +12,12 @@ const typeDefs = `
 
 
   type Trip {
+
     _id: ID  
     location: String  
     journalEntry: String  
     comments: [Comment]  
+
   }
 
 
@@ -44,6 +47,7 @@ const typeDefs = `
     addTrip(username: String!, location: String!, journalEntry: String!): User  
     addComment(commentText: String!): Comment  
     removeComment(commentId: ID!): Comment  
+
   }
 `;
 
