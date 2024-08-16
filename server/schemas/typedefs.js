@@ -1,4 +1,6 @@
 const typeDefs = `
+scalar Date
+
   type User {
     _id: ID
     username: String
@@ -12,6 +14,8 @@ const typeDefs = `
     _id: ID
     location: String
     journalEntry: String
+    startTripDate: Date
+    endTripDate: Date
     comments: [Comment]
   }
 
@@ -35,7 +39,7 @@ const typeDefs = `
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     loginUser(username: String!, password: String!): Auth
-    addTrip(username: String! location: String!, journalEntry: String!): User
+    addTrip(username: String! location: String!, journalEntry: String!, startTripDate: Date!, endTripDate: Date!): User
     addComment(commentText: String!): Comment
     removeComment(commentId: ID!): Comment
   }

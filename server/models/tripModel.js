@@ -20,11 +20,11 @@ const tripSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  startDate: {
+  startTripDate: {
     type: Date,
     // default: Date.now
   },
-  endDate: {
+  endTripDate: {
     type: Date,
     // default: Date.now
   },

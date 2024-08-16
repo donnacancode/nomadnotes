@@ -1,7 +1,28 @@
 const { User, Trip } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
+const { GraphQLScalarType, Kind } = require('graphql');
+
 const resolvers = {
+  Date: new GraphQLScalarType({
+    name: 'Date',
+    description: 'Date custom scalar type',
+    serialize(value) {
+      // Value sent to the client
+      return value instanceof Date ? value.toISOString() : null;
+    },
+    parseValue(value) {
+      // Value from the client input variables
+      return value ? new Date(value) : null;
+    },
+    parseLiteral(ast) {
+      // Value from the client query
+      if (ast.kind === Kind.STRING) {
+        return new Date(ast.value);
+      }
+      return null;
+    },
+  }),
   Query: {
     // Query to fetch all users
     users: async () => {
@@ -61,9 +82,14 @@ const resolvers = {
     addTrip : async (parent, args, context) => {
       console.log(args)
       if(context.user) {
-        const { location, journalEntry } = args;
+        const { location, journalEntry, startTripDate, endTripDate } = args;
         // Create the user with the provided username, email, and password
-        const trip = await Trip.create({ location, journalEntry });
+        const trip = await Trip.create({
+           location, 
+           journalEntry,
+          startTripDate,
+          endTripDate, 
+        });
         const user = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { trips: trip } },

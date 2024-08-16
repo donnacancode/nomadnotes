@@ -26,10 +26,10 @@ const AddTrip = () => {
     });
   };
 
-  const handleDateChange = (date) => {
+  const handleDateChange = (date, fieldName) => {
     setFormState({
       ...userFormState,
-      tripDate: date,
+      [fieldName]: date,
     });
   };
 
@@ -38,7 +38,7 @@ const AddTrip = () => {
 
     try {
       const { location, journalEntry, startTripDate, endTripDate } = userFormState;
-      console.log(location, journalEntry, tripDate, username);
+    
 
       const response = await addTrip({
         variables: { location, journalEntry, startTripDate, endTripDate, username },
@@ -79,13 +79,13 @@ const AddTrip = () => {
           />
           <DatePicker
             selected={userFormState.startTripDate}
-            onChange={handleDateChange}
+            onChange={(date) => handleDateChange(date, 'startTripDate')}
             className="form-input"
             placeholderText='Start Date'
           />
           <DatePicker
             selected={userFormState.endTripDate}
-            onChange={handleDateChange}
+            onChange={(date) => handleDateChange(date, 'endTripDate')}
             className="form-input"
             placeholderText='End Date'
           />

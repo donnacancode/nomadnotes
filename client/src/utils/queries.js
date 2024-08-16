@@ -10,6 +10,8 @@ export const GET_USER_TRIPS = gql`
         _id
         location
         journalEntry
+        startTripDate
+        endTripDate
       }
     }
   }
@@ -20,8 +22,8 @@ export const GET_USER_TRIPS = gql`
       trip(id: $tripId) {
         _id
         destination
-        startDate
-        endDate
+        startTripDate
+        endTripDate
       }
     }
   `;
