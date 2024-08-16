@@ -6,34 +6,38 @@ import { useState } from 'react';
 // import Auth from '../utils/auth';
 
 const Login = (props) => {
+  // Initialize the form state with default values for email and password.
   const [userFormState, setFormState] = useState({ email: '', password: '' });
-  // const [login, { error, data }] = useMutation(LOGIN_USER);
+  // const [login, { error, data }] = useMutation(LOGIN_USER); // Uncomment to use the login mutation.
 
-  // update state based on form input changes
+  // Function to handle changes in the input fields.
   const handleChange = (event) => {
     const { name, value } = event.target;
 
+    // Update the form state dynamically based on the input field that changed.
     setFormState({
       ...userFormState,
       [name]: value,
     });
   };
 
-  // submit form
+  // Function to handle form submission.
   const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    console.log(userFormState);
+    event.preventDefault(); // Prevent the default form submission behavior.
+    console.log(userFormState); // Log the current form state to the console.
+
+    // Uncomment the following code to enable user login with the login mutation.
     // try {
     //   const { data } = await login({
     //     variables: { ...formState },
     //   });
 
-    //   Auth.login(data.login.token);
+    //   Auth.login(data.login.token); // Log the user in with the returned token.
     // } catch (e) {
-    //   console.error(e);
+    //   console.error(e); // Log any errors to the console.
     // }
 
-    // clear form values
+    // Clear the form values after submission.
     setFormState({
       email: '',
       password: '',
@@ -46,39 +50,37 @@ const Login = (props) => {
         <div>
           <h4>Login</h4>
           <div>
-
-              <form onSubmit={handleFormSubmit}>
-                <input                  
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={userFormState.email}
-                  onChange={handleChange}
-                />
-                <input               
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={userFormState.password}
-                  onChange={handleChange}
-                />
-                <input               
-                  placeholder="******"
-                  name="confirm-password"
-                  type="password"
-                  value={userFormState.password}
-                  onChange={handleChange}
-                />
-                <button
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                >
-                  Submit
-                </button>
-              </form>
- 
-
-
+            {/* Render the login form */}
+            <form onSubmit={handleFormSubmit}>
+              {/* Input field for the email */}
+              <input
+                placeholder="Your email"
+                name="email"
+                type="email"
+                value={userFormState.email}
+                onChange={handleChange}
+              />
+              {/* Input field for the password */}
+              <input
+                placeholder="******"
+                name="password"
+                type="password"
+                value={userFormState.password}
+                onChange={handleChange}
+              />
+              {/* Input field for confirming the password (currently not functioning) */}
+              <input
+                placeholder="******"
+                name="confirm-password"
+                type="password"
+                value={userFormState.password}
+                onChange={handleChange}
+              />
+              {/* Submit button */}
+              <button style={{ cursor: 'pointer' }} type="submit">
+                Submit
+              </button>
+            </form>
           </div>
         </div>
       </div>
@@ -87,6 +89,7 @@ const Login = (props) => {
 };
 
 export default Login;
+
 
 
 // {data ? (
