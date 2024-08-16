@@ -11,6 +11,8 @@ const AddTrip = () => {
     location: '',
     journalEntry: '',
     tripDate: new Date(),
+    startTripDate: new Date(),
+    endTripDate: new Date(),
   });
 
   // Retrieve the logged-in user's username from the authentication profile.
@@ -28,11 +30,12 @@ const AddTrip = () => {
     });
   };
 
-  // Handle changes to the trip date using the DatePicker component.
-  const handleDateChange = (date) => {
-    setFormState({
+    // Handle changes to the trip date using the DatePicker component.
+  const handleDateChange = (date, fieldName) => {
+
+  setFormState({
       ...userFormState,
-      tripDate: date,
+      [fieldName]: date,
     });
   };
 
@@ -41,20 +44,19 @@ const AddTrip = () => {
     event.preventDefault(); // Prevent the default form submission behavior.
 
     try {
-      // Destructure the form state values and the user's username.
-      const { location, journalEntry, tripDate } = userFormState;
-      console.log(location, journalEntry, tripDate, username); // Log the trip details for debugging.
+      const { location, journalEntry, startTripDate, endTripDate } = userFormState;
 
       // Make the mutation request to add the trip with the specified variables.
       const response = await addTrip({
-        variables: { location, journalEntry, tripDate, username },
+        variables: { location, journalEntry, startTripDate, endTripDate, username },
       });
 
       // Reset the form state to its initial values after successful submission.
       setFormState({
         location: '',
         journalEntry: '',
-        tripDate: new Date(),
+        startTripDate: new Date(),
+        endTripDate: new Date(),
       });
     } catch (e) {
       console.error(e); // Log any errors that occur during the mutation request.
@@ -90,13 +92,13 @@ const AddTrip = () => {
           {/* Date picker for selecting the trip date */}
           <DatePicker
             selected={userFormState.startTripDate}
-            onChange={handleDateChange}
+            onChange={(date) => handleDateChange(date, 'startTripDate')}
             className="form-input"
             placeholderText='Start Date'
           />
           <DatePicker
             selected={userFormState.endTripDate}
-            onChange={handleDateChange}
+            onChange={(date) => handleDateChange(date, 'endTripDate')}
             className="form-input"
             placeholderText='End Date'
           />

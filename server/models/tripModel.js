@@ -23,12 +23,12 @@ const tripSchema = new mongoose.Schema({
     type: String,
     required: true, // Ensure that each trip has a location
   },
-  startDate: {
+  startTripDate: {
     type: Date,
     // Optional: Uncomment the next line to set the current date as the default
     // default: Date.now
   },
-  endDate: {
+  endTripDate: {
     type: Date,
     // Optional: Uncomment the next line to set the current date as the default
     // default: Date.now

@@ -12,22 +12,24 @@ import { GET_USER_TRIPS } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
-function Trips({ trips }) {
-    return (
-        <div>
-            {trips.length > 0 ? (
-                trips.map((trip) => (
-                    <div key={trip._id}>
-                        <h3>{trip.location}</h3>
-                        <p>{trip.journalEntry}</p>
-                    </div>
-                ))
-            ) : (
-                <p>No trips available</p>
-            )}
-        </div>
-    );
-}
+// function Trips({ trips }) {
+//     return (
+//         <div>
+//             {trips.length > 0 ? (
+//                 trips.map((trip) => (
+//                     <div key={trip._id}>
+//                         <p>{trip.startTripDate}</p>
+//                         <p>{trip.endTripDate}</p>
+//                         <h3>{trip.location}</h3>
+//                         <p>{trip.journalEntry}</p>
+//                     </div>
+//                 ))
+//             ) : (
+//                 <p>No trips available</p>
+//             )}
+//         </div>
+//     );
+// }
 
 
 const Profile = () => {
@@ -77,8 +79,10 @@ const Profile = () => {
                         {user.trips?.length > 0 ? (
                             user.trips.map((trip) => (
                                 <div key={trip._id}>
-                                    <h3>{trip.location}</h3>
-                                    <p>{trip.journalEntry}</p>
+                                <p>{trip.startTripDate}</p>
+                                <p>{trip.endTripDate}</p>
+                                <h3>{trip.location}</h3>
+                                <p>{trip.journalEntry}</p>
                                 </div>
                             ))
                         ) : (

@@ -13,27 +13,29 @@ const IndividualTrip = ({ username }) => {
         }
     });
 
-    // Display loading state while data is being fetched
-    if (loading) return <p>Loading...</p>;
-    
-    // Display error message if there is an issue with the query
-    if (error) return <p>Error: {error.message}</p>;
+export const GET_USER_TRIPS = gql`
+  query getUserTrips {
+    me {
+      _id
+      username
+      trips {
+        _id
+        location
+        journalEntry
+        startTripDate
+        endTripDate
+      }
+    }
+  }
+`;
 
-    // Extract trip data from the query result
-    const trip = data.trip;
-
-    return (
-        <div>
-            {/* Render the Header component */}
-            <Header />
-            
-            {/* Render the Trip component with the fetched trip data */}
-            <Trip trip={trip} />
-            
-            {/* Render the Footer component */}
-            <Footer />
-        </div>
-    );
-};
-
-export default IndividualTrip; // Export IndividualTrip component for use in other parts of the application
+  export const GET_TRIP = gql`
+    query GetTrip($tripId: ID!) {
+      trip(id: $tripId) {
+        _id
+        destination
+        startTripDate
+        endTripDate
+      }
+    }
+  `;

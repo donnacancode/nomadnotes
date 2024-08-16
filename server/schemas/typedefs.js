@@ -1,6 +1,8 @@
 // Define the GraphQL schema using SDL (Schema Definition Language)
 const typeDefs = `
-  # User type defines the structure of a user object
+
+scalar Date
+
   type User {
     _id: ID  # Unique identifier for the user
     username: String  # Username of the user
@@ -12,10 +14,12 @@ const typeDefs = `
 
   # Trip type defines the structure of a trip object
   type Trip {
-    _id: ID  # Unique identifier for the trip
-    location: String  # Location of the trip
-    journalEntry: String  # Journal entry or notes about the trip
-    comments: [Comment]  # Array of comments associated with the trip
+    _id: ID
+    location: String
+    journalEntry: String
+    startTripDate: Date
+    endTripDate: Date
+    comments: [Comment]
   }
 
   # Comment type defines the structure of a comment object
@@ -40,11 +44,11 @@ const typeDefs = `
 
   # Mutation type defines the write operations available in the schema
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth  # Mutation to add a new user
-    loginUser(username: String!, password: String!): Auth  # Mutation to log in an existing user
-    addTrip(username: String!, location: String!, journalEntry: String!): User  # Mutation to add a new trip
-    addComment(commentText: String!): Comment  # Mutation to add a comment to a trip
-    removeComment(commentId: ID!): Comment  # Mutation to remove a comment by ID
+    addUser(username: String!, email: String!, password: String!): Auth
+    loginUser(username: String!, password: String!): Auth
+    addTrip(username: String! location: String!, journalEntry: String!, startTripDate: Date!, endTripDate: Date!): User
+    addComment(commentText: String!): Comment
+    removeComment(commentId: ID!): Comment
   }
 `;
 
