@@ -37,14 +37,24 @@ const SignUp = () => {
             const { username, email, password } = userFormState;
 
             // Perform the mutation to add a new user
+
             const { data } = await addUser({
                 variables: { username, email, password },
             });
+
 
             console.log(data); // Log response data for debugging
 
             // Save token to local storage and redirect user upon successful signup
             Auth.login(data.addUser.token);
+
+            if (data.addUser.token) {
+                Auth.login(data.addUser.token);
+            } else {
+                // User with the same username already exists
+                alert('Username is already taken');
+            }
+
         } catch (e) {
             console.error(e); // Log errors if signup fails
         }

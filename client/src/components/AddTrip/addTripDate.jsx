@@ -89,9 +89,16 @@ const AddTrip = () => {
           />
           {/* Date picker for selecting the trip date */}
           <DatePicker
-            selected={userFormState.tripDate}
+            selected={userFormState.startTripDate}
             onChange={handleDateChange}
             className="form-input"
+            placeholderText='Start Date'
+          />
+          <DatePicker
+            selected={userFormState.endTripDate}
+            onChange={handleDateChange}
+            className="form-input"
+            placeholderText='End Date'
           />
           {/* Submit button for the form */}
           <button style={{ cursor: 'pointer' }} type="submit">
