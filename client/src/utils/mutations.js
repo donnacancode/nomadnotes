@@ -62,9 +62,6 @@ export const REMOVE_TRIP = gql`
       trips {
         _id
         location
-        journalEntry
-        startTripDate
-        endTripDate
       }
     }
   }

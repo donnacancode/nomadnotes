@@ -92,7 +92,7 @@ const resolvers = {
     },
 
     addTrip : async (parent, args, context) => {
-      console.log(args)
+
       if(context.user) {
         const { location, journalEntry, startTripDate, endTripDate } = args;
         // Create the user with the provided username, email, and password
@@ -133,10 +133,11 @@ const resolvers = {
       } 
       // throw new AuthenticationError('You need to be logged in!');
     },
-    removeTrip: async (parent, { tripId }, context) => {
+    removeTrip: async (parent, args, context) => {
+
       if (context.user) {
         // Find and remove the trip from the Trip collection
-        const trip = await Trip.findOneAndDelete({ _id: tripId });
+        const trip = await Trip.findOneAndDelete({ _id: args.tripId });
 
         // Throw an error if the trip doesn't exist
         if (!trip) {
@@ -146,7 +147,7 @@ const resolvers = {
         // Update the user's trips by removing the deleted trip's ID
         const user = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { trips: tripId } },
+          { $pull: { trips: args.tripId } },
           { new: true }
         ).populate('trips'); // Populate trips after the update
 
