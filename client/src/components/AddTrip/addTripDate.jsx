@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_TRIP } from '../../utils/mutations';
+import { ADD_DREAM_TRIP } from '../../utils/mutations';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Auth from '../../utils/auth';
@@ -14,12 +15,13 @@ const AddTrip = () => {
     endTripDate: new Date(),
   });
 
-  // const [dreamTrip, setDreamTrip] = useState(false);
+  const [dreamTrip, setDreamTrip] = useState(false);
 
 
   const { data: { username } } = Auth.getProfile();
 
-  const [addTrip, { loading, error, data }] = useMutation(ADD_TRIP);
+  const [addTrip, { loading: addTripLoading, data: dataAddTrip }] = useMutation(ADD_TRIP);
+  const [addDreamTrip, { loading: dreamTripLoading, data: dataDreamTrip }] = useMutation(ADD_DREAM_TRIP);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -42,17 +44,19 @@ const AddTrip = () => {
     try {
       const { location, journalEntry, startTripDate, endTripDate } = userFormState;
     
-      // If the use state of dreamTrip is false, then the start and end trip dates are included
-      // if (!dreamTrip) {
+      console.log(dreamTrip)
+      if (dreamTrip == true) {
+        console.log(dreamTrip)
+      await addDreamTrip({
+        variables: { location, journalEntry, username },
+      });
+      }
 
-        const response = await addTrip({
-        variables: { location, journalEntry, startTripDate, endTripDate, username },
-      })   
-      // };
-
-      // const response = await addTrip({
-      // variables: { location, journalEntry, username },
-      // })
+      else {
+        await addTrip({
+          variables: { location, journalEntry, startTripDate, endTripDate, username },
+        })
+      }
 
       setFormState({
         location: '',
@@ -60,26 +64,28 @@ const AddTrip = () => {
         startTripDate: new Date(),
         endTripDate: new Date(),
       });
+      setDreamTrip(false); // Reset dream trip checkbox
+
     } catch (e) {
       console.error(e);
     }
   };
 
-  // const handleDreamTripChange = () => {
-  //   setDreamTrip(!dreamTrip);
-  //   if (!dreamTrip) {
-  //     setFormState({
-  //       ...userFormState,
-  //       startTripDate: null,
-  //       endTripDate: null,
-  //     });
-  //   }
-  // };
+  const handleDreamTripChange = () => {
+    setDreamTrip(!dreamTrip);
+    if (!dreamTrip) {
+      setFormState({
+        ...userFormState,
+        startTripDate: null,
+        endTripDate: null,
+      });
+    }
+  };
 
   return (
     <div>
       <h4>Add Trip</h4>
-      {loading ? <div>Loading...</div> : null}
+
       <div>
         <form onSubmit={handleFormSubmit}>
           <input
@@ -103,21 +109,23 @@ const AddTrip = () => {
             onChange={(date) => handleDateChange(date, 'startTripDate')}
             className="form-input"
             placeholderText='Start Date'
+            disabled={dreamTrip}
           />
           <DatePicker
             selected={userFormState.endTripDate}
             onChange={(date) => handleDateChange(date, 'endTripDate')}
             className="form-input"
             placeholderText='End Date'
+            disabled={dreamTrip}
           />
-          {/* <label>
+          <label>
             <input
               type="checkbox"
               checked={dreamTrip}
               onChange={handleDreamTripChange}
             />
-            Dream Trip
-          </label> */}
+            Dream Trip (no specific dates)
+          </label>
           <button style={{ cursor: 'pointer' }} type="submit">
             Submit
           </button>
