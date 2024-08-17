@@ -10,6 +10,8 @@ export const GET_USER_TRIPS = gql`
         _id
         location
         journalEntry
+        startTripDate
+        endTripDate
       }
     }
   }
