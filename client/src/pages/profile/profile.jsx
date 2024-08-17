@@ -52,7 +52,7 @@ const Profile = () => {
             <div>
                 <Header />
             </div>
-            <main>
+            <main id="profile">
                 <img src={northern_lights} alt="Northern lights" className="profileBg"></img>
                 {/* Main content */}
                 <div id="main-content">
