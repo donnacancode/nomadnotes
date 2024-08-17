@@ -32,11 +32,6 @@ const resolvers = {
       return await User.find({});
     },
 
-    // Query to fetch a single user by ID (commented out in this version)
-    // user: async (_, { id }) => {
-    //   return await User.findById(id);
-    // },
-
     // Query to fetch the currently authenticated user
     me: async (parent, args, context) => {
       // Check if the user is authenticated
@@ -102,13 +97,35 @@ const resolvers = {
         const { location, journalEntry, startTripDate, endTripDate } = args;
         // Create the user with the provided username, email, and password
         const trip = await Trip.create({
-           location, 
-           journalEntry,
+          location, 
+          journalEntry,
           startTripDate,
           endTripDate, 
         });
         const user = await User.findOneAndUpdate(
           { _id: context.user._id },
+          { $addToSet: { trips: trip } },
+          { new: true, runValidators: true }
+        );
+        return user;
+      } 
+      // throw new AuthenticationError('You need to be logged in!');
+    },
+    addDreamTrip : async (parent, args, context) => {
+
+      if(context.user) {
+        const { username, location, journalEntry } = args;
+        // Create the user with the provided username, email, and password
+        console.log(location)
+        const trip = await Trip.create({
+           location, 
+           journalEntry,
+        });
+
+        console.log(trip)
+
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id  },
           { $addToSet: { trips: trip } },
           { new: true, runValidators: true }
         );

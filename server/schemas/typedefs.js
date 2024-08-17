@@ -44,6 +44,7 @@ scalar Date
     addUser(username: String!, email: String!, password: String!): Auth  
     loginUser(username: String!, password: String!): Auth  
     addTrip(username: String! location: String!, journalEntry: String!, startTripDate: Date!, endTripDate: Date!): User
+    addDreamTrip(username: String!, location: String!, journalEntry: String!): User
     addComment(commentText: String!): Comment  
     removeComment(commentId: ID!): Comment  
 

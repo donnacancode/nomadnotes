@@ -5,7 +5,6 @@ function DreamTrips ({ trips }) {
   
       return (
           <div id="trips-box">
-              <h2>This will be upcoming trips</h2>
               {
                   trips.map((trip) => (
                       <div key={trip._id}>
@@ -20,6 +19,6 @@ function DreamTrips ({ trips }) {
       );
   }
   
-  export default UpcomingTrips;
+  export default DreamTrips;
   
   

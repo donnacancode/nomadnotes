@@ -5,6 +5,7 @@ import Footer from '../../components/footer';
 import AddTrip from '../../components/AddTrip/addTripDate';
 import UpcomingTrips from '../../components/Trips/upcomingTrips';
 import PreviousTrips from '../../components/Trips/previousTrips';
+import DreamTrips from '../../components/Trips/dreamTrips';
 import './profile.css';
 import northern_lights from '../../assets/northern_lights.png';
 import { Navigate, useParams } from 'react-router-dom';
@@ -20,6 +21,7 @@ const Profile = () => {
 
     const upcomingTrips = []
     const prevTrips = []
+    const dreamTrips = []
 
     const [user, setUser] = useState({ trips: [] })
     useEffect(() => {
@@ -30,14 +32,27 @@ const Profile = () => {
     }, [data, user.trips])
 
     for (const trip of user.trips) {
-        const startTripDate = new Date(trip.startTripDate).getTime();       
-
-        if (startTripDate > Date.now()) {
+        let startTripDate = ""
+        if(trip.startTripDate) {
+           startTripDate = new Date(trip.startTripDate).getTime();  
+        }
+        else {
+            startTripDate = ""
+        }   
+        
+        if (startTripDate === "") {
+            console.log("Dream trip")
+            dreamTrips.push(trip);
+        }
+        else if (startTripDate > Date.now()) {
+            console.log("Upcoming trip")
             upcomingTrips.push(trip);
         }
-        if (startTripDate < Date.now()) {
+        else {
+            console.log("Previous trip")
             prevTrips.push(trip);
-        }
+        };
+
     }
 
     if (!Auth.loggedIn()) {
@@ -77,7 +92,8 @@ const Profile = () => {
                     {/* Dream trips box */}
                     <div id="dream-trips-box">
                         <Link to="/dreamtrips">Dream Trips</Link>
-
+                        <DreamTrips
+                        trips = {dreamTrips} />
                     </div>
 
 

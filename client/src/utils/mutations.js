@@ -42,6 +42,18 @@ mutation AddTrip($username: String!, $location: String!, $journalEntry: String!,
   }
 }
 `
+export const ADD_DREAM_TRIP = gql`
+mutation AddDreamTrip($username: String! $location: String!, $journalEntry: String!) {
+  addDreamTrip(username: $username, location: $location, journalEntry: $journalEntry) {
+    username
+    trips {
+      location
+      journalEntry
+    }
+  }
+}
+`
+
 
 
 

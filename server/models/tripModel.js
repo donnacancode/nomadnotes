@@ -26,12 +26,12 @@ const tripSchema = new mongoose.Schema({
   startTripDate: {
     type: Date,
     // Optional: Uncomment the next line to set the current date as the default
-    // default: Date.now
+    default: null
   },
   endTripDate: {
     type: Date,
     // Optional: Uncomment the next line to set the current date as the default
-    // default: Date.now
+    default: null
   },
   journalEntry: {
     type: String,
