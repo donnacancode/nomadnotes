@@ -23,6 +23,14 @@ function UpcomingTrips ({ trips }) {
                             <p>End Date: {formattedEndDate}</p>
                             <h3>{trip.location}</h3>
                             <p>{trip.journalEntry}</p>
+                            <button
+                            onClick={() => handleDeleteTrip(trip._id)}>
+                            Delete Trip
+                          </button>
+                          <button
+                            onClick={() => handleUpdateTrip(trip._id)}>
+                            Update Trip
+                            </button>
                         </div>
                     );
                 })

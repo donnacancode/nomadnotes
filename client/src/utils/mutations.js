@@ -54,6 +54,22 @@ mutation AddDreamTrip($username: String! $location: String!, $journalEntry: Stri
 }
 `
 
+export const REMOVE_TRIP = gql`
+  mutation RemoveTrip($tripId: ID!) {
+    removeTrip(tripId: $tripId) {
+      _id
+      username
+      trips {
+        _id
+        location
+        journalEntry
+        startTripDate
+        endTripDate
+      }
+    }
+  }
+`;
+
 
 
 

@@ -132,9 +132,33 @@ const resolvers = {
         return user;
       } 
       // throw new AuthenticationError('You need to be logged in!');
+    },
+    removeTrip: async (parent, { tripId }, context) => {
+      if (context.user) {
+        // Find and remove the trip from the Trip collection
+        const trip = await Trip.findOneAndDelete({ _id: tripId });
+
+        // Throw an error if the trip doesn't exist
+        if (!trip) {
+          throw new Error("Trip not found");
+        }
+
+        // Update the user's trips by removing the deleted trip's ID
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { trips: tripId } },
+          { new: true }
+        ).populate('trips'); // Populate trips after the update
+
+        return user;
+      }
+
+      // Throw an error if the user is not authenticated
+      throw new AuthenticationError('You need to be logged in!');
     }
   }
-};
+}
+
 
 module.exports = resolvers;
 
