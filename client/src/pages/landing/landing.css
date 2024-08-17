@@ -9,7 +9,7 @@ html {
 /* Style for the main container to make it full screen */
 main {
   position: relative; /* Allows for absolute positioning of background image */
-  height: 100vh; /* Full viewport height */
+  height: 100vh; /*Full viewport height */
   display: flex; /* Flexbox for centering content */
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */

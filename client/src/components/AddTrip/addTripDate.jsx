@@ -14,6 +14,9 @@ const AddTrip = () => {
     endTripDate: new Date(),
   });
 
+  // const [dreamTrip, setDreamTrip] = useState(false);
+
+
   const { data: { username } } = Auth.getProfile();
 
   const [addTrip, { loading, error, data }] = useMutation(ADD_TRIP);
@@ -39,10 +42,17 @@ const AddTrip = () => {
     try {
       const { location, journalEntry, startTripDate, endTripDate } = userFormState;
     
+      // If the use state of dreamTrip is false, then the start and end trip dates are included
+      // if (!dreamTrip) {
 
-      const response = await addTrip({
+        const response = await addTrip({
         variables: { location, journalEntry, startTripDate, endTripDate, username },
-      });
+      })   
+      // };
+
+      // const response = await addTrip({
+      // variables: { location, journalEntry, username },
+      // })
 
       setFormState({
         location: '',
@@ -54,6 +64,17 @@ const AddTrip = () => {
       console.error(e);
     }
   };
+
+  // const handleDreamTripChange = () => {
+  //   setDreamTrip(!dreamTrip);
+  //   if (!dreamTrip) {
+  //     setFormState({
+  //       ...userFormState,
+  //       startTripDate: null,
+  //       endTripDate: null,
+  //     });
+  //   }
+  // };
 
   return (
     <div>
@@ -89,6 +110,14 @@ const AddTrip = () => {
             className="form-input"
             placeholderText='End Date'
           />
+          {/* <label>
+            <input
+              type="checkbox"
+              checked={dreamTrip}
+              onChange={handleDreamTripChange}
+            />
+            Dream Trip
+          </label> */}
           <button style={{ cursor: 'pointer' }} type="submit">
             Submit
           </button>

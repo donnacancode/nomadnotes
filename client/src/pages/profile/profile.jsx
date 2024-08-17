@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
-import AddTrip from '../../components/addTripDate';
+import AddTrip from '../../components/AddTrip/addTripDate';
 import UpcomingTrips from '../../components/Trips/upcomingTrips';
 import PreviousTrips from '../../components/Trips/previousTrips';
 import './profile.css';
@@ -40,9 +40,6 @@ const Profile = () => {
         }
     }
 
-    console.log(prevTrips)
-
-
     if (!Auth.loggedIn()) {
         return <Navigate to="/" />;
     }
@@ -61,7 +58,7 @@ const Profile = () => {
                 <div id="main-content">
                     <h1>Welcome {user.username}</h1>
 
-                    <AddTrip loadUserTrips={loadUserTrips}/>
+                    <AddTrip />
 
                     {/* Upcoming trips box */}
                     <div id="upcoming-trips-box">
@@ -83,21 +80,6 @@ const Profile = () => {
 
                     </div>
 
-                    <div id="trips-box">
-                        <h2>Your Trips</h2>
-                        {user.trips?.length > 0 ? (
-                            user.trips.map((trip) => (
-                                <div key={trip._id}>
-                                {/* <p>{trip.startTripDate}</p>
-                                <p>{trip.endTripDate}</p> */}
-                                <h3>{trip.location}</h3>
-                                <p>{trip.journalEntry}</p>
-                                </div>
-                            ))
-                        ) : (
-                            <p>No trips set yet!</p>
-                        )}
-                    </div>
 
                 </div>
 
