@@ -30,15 +30,17 @@ export const LOGIN_USER = gql`
 // Mutation to add a new trip
 export const ADD_TRIP = gql`
 
-mutation AddTrip($username: String!, $location: String!, $journalEntry: String!) {
-  addTrip(username: $username, location: $location, journalEntry: $journalEntry) {
+mutation AddTrip($username: String!, $location: String!, $journalEntry: String!, $startTripDate: Date!, $endTripDate: Date!) {
+  addTrip(username: $username, location: $location, journalEntry: $journalEntry, startTripDate: $startTripDate, endTripDate: $endTripDate) {
     username
     trips {
       location
       journalEntry
-      }
+      startTripDate
+      endTripDate
     }
   }
+}
 `
 
 
