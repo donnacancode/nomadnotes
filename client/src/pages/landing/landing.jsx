@@ -9,7 +9,7 @@ import landingbg from "../../assets/landingbg.png"; // Import background image f
 const Landing = () => {
   return (
     <div>
-      <main>
+      <main id="landing-page">
         {/* Display the background image for the landing page */}
         <img src={landingbg} alt="Palm trees" className="bg" />
         <div style={{ textAlign: "center" }}>
