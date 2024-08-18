@@ -7,7 +7,7 @@ html {
 }
 
 /* Style for the main container to make it full screen */
-main {
+main #landing {
   position: relative; /* Allows for absolute positioning of background image */
   height: 100vh; /*Full viewport height */
   display: flex; /* Flexbox for centering content */
