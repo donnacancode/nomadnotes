@@ -18,8 +18,8 @@ function UpdateTrip({ trip }) {
   });
 
   const [userFormState, setUserFormState] = useState({
-    location: '',
-    journalEntry: '',
+    location: trip.location,
+    journalEntry: trip.journalEntry,
     startTripDate: trip.startTripDate || null,
     endTripDate: trip.endTripDate || null,
   });
@@ -37,6 +37,14 @@ function UpdateTrip({ trip }) {
     });
     // onInputChange(trip._id, field, value); 
     // Send changes back to the parent component
+  };
+
+  const handleInputFocus = (event) => {
+    const { name } = event.target;
+    setUserFormState({
+      ...userFormState,
+      [name]: '',
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -85,6 +93,7 @@ function UpdateTrip({ trip }) {
               type="text"
               value={userFormState.location}
               onChange={handleInputChange}
+              onFocus={handleInputFocus}
             />
       </div>
       <div>
@@ -96,6 +105,7 @@ function UpdateTrip({ trip }) {
               type="text"
               value={userFormState.journalEntry}
               onChange={handleInputChange}
+              onFocus={handleInputFocus}
             />
       </div>
       <button type="submit">Update Trip</button>
