@@ -1,15 +1,17 @@
+import Auth from "../../utils/auth";
+import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { REMOVE_TRIP, UPDATE_TRIP } from "../../utils/mutations";
+import UpdateTrip from "../UpdateTrip/updateTrip";
 
-import Auth from '../../utils/auth';
-import { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { REMOVE_TRIP, UPDATE_TRIP } from '../../utils/mutations';
-import UpdateTrip from '../UpdateTrip/updateTrip';
 function UpcomingTrips({ trips }) {
   // GraphQL mutations for removing and updating trips
   const [removeTrip] = useMutation(REMOVE_TRIP);
   const [updateTrip] = useMutation(UPDATE_TRIP);
   // Get username from Auth profile
-  const { data: { username } } = Auth.getProfile();
+  const {
+    data: { username },
+  } = Auth.getProfile();
   // Local state for handling form data and form visibility
   const [formState, setFormState] = useState({});
   const [showFormState, setShowFormState] = useState({});
@@ -26,9 +28,9 @@ function UpcomingTrips({ trips }) {
   const handleDeleteTrip = async (tripId) => {
     try {
       await removeTrip({ variables: { username, tripId } });
-      console.log('Trip deleted successfully');
+      console.log("Trip deleted successfully");
     } catch (error) {
-      console.error('Error deleting trip:', error);
+      console.error("Error deleting trip:", error);
     }
   };
   // Handle trip update
@@ -37,16 +39,21 @@ function UpcomingTrips({ trips }) {
     <div id="trips-box">
       {trips.map((trip) => {
         // Convert trip dates to a readable format
-        const formattedStartDate = new Date(trip.startTripDate).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
+        const formattedStartDate = new Date(
+          trip.startTripDate
+        ).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
         });
-        const formattedEndDate = new Date(trip.endTripDate).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        });
+        const formattedEndDate = new Date(trip.endTripDate).toLocaleDateString(
+          "en-US",
+          {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          }
+        );
         const tripForm = formState[trip._id] || {};
         const showForm = showFormState[trip._id] || false; // Check if the form should be visible
         return (
@@ -68,7 +75,7 @@ function UpcomingTrips({ trips }) {
               />
             )}
             <button onClick={() => toggleFormVisibility(trip._id)}>
-              {showForm ? 'Hide Update Form' : 'Show Update Form'}
+              {showForm ? "Hide Update Form" : "Show Update Form"}
             </button>
             <button onClick={() => handleDeleteTrip(trip._id)}>
               Delete Trip

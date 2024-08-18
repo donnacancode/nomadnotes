@@ -1,27 +1,29 @@
-import { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { ADD_TRIP } from '../../utils/mutations';
-import { ADD_DREAM_TRIP } from '../../utils/mutations';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import Auth from '../../utils/auth';
+import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { ADD_TRIP, ADD_DREAM_TRIP } from "../../utils/mutations";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "./addTripDate.css";
+import Auth from "../../utils/auth";
 
 const AddTrip = () => {
   const [userFormState, setFormState] = useState({
-    location: '',
-    journalEntry: '',
-    tripDate: new Date(),
+    location: "",
+    journalEntry: "",
     startTripDate: new Date(),
     endTripDate: new Date(),
   });
 
   const [dreamTrip, setDreamTrip] = useState(false);
 
+  const {
+    data: { username },
+  } = Auth.getProfile();
 
-  const { data: { username } } = Auth.getProfile();
-
-  const [addTrip, { loading: addTripLoading, data: dataAddTrip }] = useMutation(ADD_TRIP);
-  const [addDreamTrip, { loading: dreamTripLoading, data: dataDreamTrip }] = useMutation(ADD_DREAM_TRIP);
+  const [addTrip, { loading: addTripLoading, data: dataAddTrip }] =
+    useMutation(ADD_TRIP);
+  const [addDreamTrip, { loading: dreamTripLoading, data: dataDreamTrip }] =
+    useMutation(ADD_DREAM_TRIP);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -42,30 +44,32 @@ const AddTrip = () => {
     event.preventDefault();
 
     try {
-      const { location, journalEntry, startTripDate, endTripDate } = userFormState;
-    
-      console.log(dreamTrip)
-      if (dreamTrip == true) {
-        console.log(dreamTrip)
-      await addDreamTrip({
-        variables: { location, journalEntry, username },
-      });
-      }
+      const { location, journalEntry, startTripDate, endTripDate } =
+        userFormState;
 
-      else {
+      if (dreamTrip) {
+        await addDreamTrip({
+          variables: { location, journalEntry, username },
+        });
+      } else {
         await addTrip({
-          variables: { location, journalEntry, startTripDate, endTripDate, username },
-        })
+          variables: {
+            location,
+            journalEntry,
+            startTripDate,
+            endTripDate,
+            username,
+          },
+        });
       }
 
       setFormState({
-        location: '',
-        journalEntry: '',
+        location: "",
+        journalEntry: "",
         startTripDate: new Date(),
         endTripDate: new Date(),
       });
       setDreamTrip(false); // Reset dream trip checkbox
-
     } catch (e) {
       console.error(e);
     }
@@ -83,8 +87,8 @@ const AddTrip = () => {
   };
 
   return (
-    <div>
-      <h4>Add Trip</h4>
+    <div className="add-trip-container">
+      <h4>Add A Trip</h4>
 
       <div>
         <form onSubmit={handleFormSubmit}>
@@ -106,16 +110,16 @@ const AddTrip = () => {
           />
           <DatePicker
             selected={userFormState.startTripDate}
-            onChange={(date) => handleDateChange(date, 'startTripDate')}
+            onChange={(date) => handleDateChange(date, "startTripDate")}
             className="form-input"
-            placeholderText='Start Date'
+            placeholderText="Start Date"
             disabled={dreamTrip}
           />
           <DatePicker
             selected={userFormState.endTripDate}
-            onChange={(date) => handleDateChange(date, 'endTripDate')}
+            onChange={(date) => handleDateChange(date, "endTripDate")}
             className="form-input"
-            placeholderText='End Date'
+            placeholderText="End Date"
             disabled={dreamTrip}
           />
           <label>
@@ -124,11 +128,9 @@ const AddTrip = () => {
               checked={dreamTrip}
               onChange={handleDreamTripChange}
             />
-            Dream Trip (no specific dates)
+            This is a Dream Trip- no specific dates
           </label>
-          <button style={{ cursor: 'pointer' }} type="submit">
-            Submit
-          </button>
+          <button type="submit">Submit</button>
         </form>
       </div>
     </div>

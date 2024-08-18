@@ -1,70 +1,160 @@
 /* Ensure the entire page takes up the full viewport height */
 body,
 html {
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    height: 100%; /* Full height of viewport */
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Style for the main container to make it full screen */
+#profile {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /* Style for the background image on the profile page */
 .profileBg {
-    position: absolute; /* Position the background image behind other content */
-    top: 0; /* Align to the top of the container */
-    left: 0; /* Align to the left of the container */
-    width: 100%; /* Full width of the container */
-    height: 100%; /* Full height of the container */
-    background-image: url("../../assets/profilebg.png"); /* Set the background image */
-    background-size: cover; /* Ensures the image covers the entire background */
-    background-position: center; /* Keeps the image centered */
-    background-repeat: no-repeat; /* Prevents repeating the image */
-    opacity: 0.6; /* Adjusts transparency of the image */
-    z-index: -1; /* Places the image behind the content */
-
-    /* gb added fixed property */
-    position: fixed;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/northern_lights.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.6;
+  z-index: -1;
 }
 
 /* Header style for the profile page */
 header {
-    background-color: light violet; /* Light violet background color */
-    color: white; /* White text color */
-    padding: 1rem; /* Padding inside the header */
-    text-align: center; /* Center-align text */
+  background-color: rgba(129, 211, 126, 0.774);
+  color: white;
+  padding: 1rem;
+  text-align: center;
 }
 
+/* Main content area */
+#main-content {
+  padding: 2rem;
+  text-align: center;
+  z-index: 1;
+}
 
+/* Flex container for the trip boxes */
+.trip-boxes-container {
+  display: flex;
+  justify-content: space-around; /* Evenly distribute space around the trip boxes */
+  align-items: flex-start; /* Align the trip boxes at the top */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 20px; /* Add spacing between boxes */
+  margin-top: 20px; /* Space above the boxes */
+}
 
-/* Style for boxes in the profile section */
-
-/* THIS WAS THE ONLY CHANGE I MADE HERE. MAKING WIDTH AND HEIGHT DIFFERENT */
-#friends-box,
+/* Style for all trip boxes (upcoming, previous, dream) */
 #upcoming-trips-box,
 #previous-trips-box,
-#past-trips-box,
 #dream-trips-box {
-    width: 1060px; /* Fixed width for each box */
-    height: 3000px; /* Fixed height for each box */
-    border: solid greenyellow; /* Solid border with greenyellow color */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 10px; /* Small font size */
-    font-family: "Shadows Into Light Two", cursive; /* Cursive font for a stylized appearance */
+  width: 30%; /* Percentage width to allow 3 boxes in one row */
+  min-width: 250px; /* Minimum width to handle small screens */
+  height: 300px;
+  border: solid rgba(129, 211, 126, 0.774);
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: "Shadows Into Light Two", cursive;
+  background-color: rgba(129, 211, 126, 0.774);
+  padding: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Allow scrolling if content overflows */
 }
 
-/* Specific style for profile picture */
-#profile-pic {
-    width: 200px; /* Fixed width for the profile picture */
-    height: 200px; /* Fixed height for the profile picture */
-    border-radius: 50%; /* Circular shape */
-    margin-top: 20px; /* Space above the profile picture */
+/* Ensure trip entries take up the full width of the container */
+#trips-box > div {
+  width: 100%; /* Ensure the trip entry takes up the full width of the parent container */
+  margin-bottom: 10px; /* Space between trips */
+  padding: 10px;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Light background for individual trip entries */
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Style for profile information text */
-#profile-info {
-    font-family: "Shadows Into Light Two", cursive; /* Cursive font for a stylized appearance */
-    font-size: 20px; /* Larger font size for readability */
-    margin-top: 20px; /* Space above the profile information */
+/* Style for individual trip entries */
+#trips-box > div {
+  margin-bottom: 10px; /* Space between trips */
+  padding: 10px;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Light background for individual trip entries */
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Style for the headings within each trip entry */
+#trips-box h3 {
+  font-family: "Shadows Into Light Two", cursive;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
 
+/* Style for the paragraph text within each trip entry */
+#trips-box p {
+  font-family: "Lora", serif;
+  margin: 0.5rem 0;
+}
 
+/* Make sure buttons are aligned within each trip entry */
+#trips-box button {
+  background-color: rgba(
+    122,
+    116,
+    255,
+    0.8
+  ); /* Semi-transparent purple background */
+  color: white; /* White text color */
+  padding: 10px 15px; /* Padding inside the button */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  font-family: "Shadows Into Light Two", cursive; /* Match the font with the rest of the app */
+  font-size: 1rem; /* Set the font size */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  margin: 5px; /* Add some space between buttons */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
 
+/* Hover effect for buttons */
+#trips-box button:hover {
+  background-color: rgba(122, 116, 255, 1); /* Fully opaque purple on hover */
+  transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+/* Active state for buttons */
+#trips-box button:active {
+  transform: scale(0.95); /* Slightly shrink the button on click */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .trip-boxes-container {
+    flex-direction: column; /* Stack the boxes vertically on small screens */
+    align-items: center;
+  }
+
+  #upcoming-trips-box,
+  #previous-trips-box,
+  #dream-trips-box {
+    width: 100%; /* Make the boxes full-width on small screens */
+    min-width: unset; /* Remove the minimum width on small screens */
+  }
+}
