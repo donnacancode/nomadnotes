@@ -39,7 +39,7 @@ function UpdateTrip({ trip }) {
     // Send changes back to the parent component
   };
 
-  const handleInputFocus = (event) => {
+  const handleOnFocus = (event) => {
     const { name } = event.target;
     setUserFormState({
       ...userFormState,
@@ -93,7 +93,7 @@ function UpdateTrip({ trip }) {
               type="text"
               value={userFormState.location}
               onChange={handleInputChange}
-              onFocus={handleInputFocus}
+              onFocus={handleOnFocus}
             />
       </div>
       <div>
@@ -105,7 +105,7 @@ function UpdateTrip({ trip }) {
               type="text"
               value={userFormState.journalEntry}
               onChange={handleInputChange}
-              onFocus={handleInputFocus}
+              onFocus={handleOnFocus}
             />
       </div>
       <button type="submit">Update Trip</button>
