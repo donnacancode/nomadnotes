@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
-import AddTrip from '../../components/AddTrip/addTripDate';
+import AddTrip from '../../components/AddTrip/addTrip';
 import UpcomingTrips from '../../components/Trips/upcomingTrips';
 import PreviousTrips from '../../components/Trips/previousTrips';
 import DreamTrips from '../../components/Trips/dreamTrips';

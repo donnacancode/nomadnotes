@@ -158,11 +158,38 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     updateTrip: async (parent, args, context) => {
+      console.log(args)
 
       if (context.user) {
         // Find and remove the trip from the Trip collection
         const trip = await Trip.findOneAndUpdate({ _id: args.tripId }, 
           { $set: { location: args.location, journalEntry: args.journalEntry, startTripDate: args.startTripDate, endTripDate: args.endTripDate } },
+          { runValidators: true, new: true }
+        )
+        // Throw an error if the trip doesn't exist
+        if (!trip) {
+          throw new Error("Trip not found");
+        }
+
+        // Update the user's trips by removing the deleted trip's ID
+        // const user = await User.findOneAndUpdate(
+        //   { _id: context.user._id },
+        //   { $pull: { trips: args.tripId } },
+        //   { new: true }
+        // ).populate('trips'); // Populate trips after the update
+
+        return trip;
+      }
+
+      // Throw an error if the user is not authenticated
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    updateDreamTrip: async (parent, args, context) => {
+
+      if (context.user) {
+        // Find and remove the trip from the Trip collection
+        const trip = await Trip.findOneAndUpdate({ _id: args.tripId }, 
+          { $set: { location: args.location, journalEntry: args.journalEntry  } },
           { runValidators: true, new: true }
         )
         // Throw an error if the trip doesn't exist

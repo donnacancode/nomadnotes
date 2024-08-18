@@ -68,13 +68,28 @@ export const REMOVE_TRIP = gql`
 `;
 
 export const UPDATE_TRIP = gql`
-  mutation udpateTrip($username: String!, $location: String!, $journalEntry: String!, $startTripDate: Date!, $endTripDate: Date!) {
-    updateTrip(username: $username, location: $location, journalEntry: $journalEntry, startTripDate: $startTripDate, endTripDate: $endTripDate) {
+  mutation udpateTrip($tripId: ID!, $location: String!, $journalEntry: String!, $startTripDate: Date!, $endTripDate: Date!) {
+    updateTrip(tripId: $tripId, location: $location, journalEntry: $journalEntry, startTripDate: $startTripDate, endTripDate: $endTripDate) {
       _id
       username
       trips {
         _id
         location
+      }
+    }
+  }
+`;
+
+export const UPDATE_DREAM_TRIP = gql`
+  mutation udpateTrip($tripId: ID!, $location: String!, $journalEntry: String! ) {
+    updateTrip(tripId: $tripId, location: $location, journalEntry: $journalEntry) {
+      _id
+      username
+      trips {
+        _id
+        location
+        startTripDate
+        endTripDate
       }
     }
   }
