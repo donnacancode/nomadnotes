@@ -13,8 +13,8 @@ function UpdateTrip({ trip }) {
   });
 
   const [userFormState, setUserFormState] = useState({
-    location: '',
-    journalEntry: '',
+    location: trip.location,
+    journalEntry: trip.journalEntry,
     startTripDate: trip.startTripDate || new Date(),
     endTripDate: trip.endTripDate || new Date(),
   });
