@@ -12,6 +12,7 @@ function UpcomingTrips({ trips }) {
   // Get username from Auth profile
   const { data: { username } } = Auth.getProfile();
   // Local state for handling form data and form visibility
+  
   const [formState, setFormState] = useState({});
   const [showFormState, setShowFormState] = useState({});
   // Handle input changes for form data
