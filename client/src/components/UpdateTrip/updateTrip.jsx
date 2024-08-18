@@ -1,6 +1,12 @@
 import { useState } from 'react';
+import Auth from '../../utils/auth';
+import { useMutation } from '@apollo/client';
+import { UPDATE_TRIP } from '../../utils/mutations';
+
 
 function UpdateTrip({ trip }) {
+  const tripId = trip._id
+
   const formattedStartDate = new Date(trip.startTripDate).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -15,31 +21,61 @@ function UpdateTrip({ trip }) {
   const [userFormState, setUserFormState] = useState({
     location: trip.location,
     journalEntry: trip.journalEntry,
-    startTripDate: trip.startTripDate || new Date(),
-    endTripDate: trip.endTripDate || new Date(),
+    startTripDate: trip.startTripDate || null,
+    endTripDate: trip.endTripDate || null,
   });
 
-  const handleInputChange = (field, value) => {
+  const [updateTrip] = useMutation(UPDATE_TRIP);
+
+  const { data: { username } } = Auth.getProfile();
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
     setUserFormState({
       ...userFormState,
-      [field]: value,
+      [name]: value,
     });
-    onInputChange(trip._id, field, value); // Send changes back to the parent component
+
   };
 
-  const handleSubmit = (e) => {
+  const handleOnFocus = (event) => {
+    const { name } = event.target;
+    setUserFormState({
+      ...userFormState,
+      [name]: '',
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onUpdateTrip(); // Trigger the update trip function passed from the parent
+
+    const { location, journalEntry, startTripDate, endTripDate } = userFormState;
+    
+      if (!startTripDate && !endTripDate) {
+
+        await updateDreamTrip({
+          variables: { tripId, location, journalEntry, username },
+        });
+      }
+      else {
+console.log(tripId)
+        await updateTrip({
+          variables: { tripId, location, journalEntry, username, startTripDate, endTripDate },
+        });
+      }
+      window.location.reload()
+    }
+ 
 
 
 
-    window.location.reload()
-  };
+    
+
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
-      <p>Start Date: {formattedStartDate} asdfsdfasadf</p>
+      <p>Start Date: {formattedStartDate} </p>
         {/* <input
           type="date"
           value={userFormState.startTripDate ? new Date(userFormState.startTripDate).toISOString().split('T')[0] : ''}
@@ -47,7 +83,7 @@ function UpdateTrip({ trip }) {
         /> */}
       </div>
       <div>
-      <p>End Date: {formattedEndDate} afsdasdfasdf</p>
+      <p>End Date: {formattedEndDate} </p>
         {/* <input
           type="date"
           value={userFormState.endTripDate ? new Date(userFormState.endTripDate).toISOString().split('T')[0] : ''}
@@ -63,6 +99,7 @@ function UpdateTrip({ trip }) {
               type="text"
               value={userFormState.location}
               onChange={handleInputChange}
+              onFocus={handleOnFocus}
             />
       </div>
       <div>
@@ -74,6 +111,7 @@ function UpdateTrip({ trip }) {
               type="text"
               value={userFormState.journalEntry}
               onChange={handleInputChange}
+              onFocus={handleOnFocus}
             />
       </div>
       <button type="submit">Update Trip</button>

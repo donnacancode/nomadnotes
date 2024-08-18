@@ -158,7 +158,7 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     updateTrip: async (parent, args, context) => {
-
+console.log(args)
       if (context.user) {
         // Find and remove the trip from the Trip collection
         const trip = await Trip.findOneAndUpdate({ _id: args.tripId }, 
@@ -188,7 +188,7 @@ const resolvers = {
       if (context.user) {
         // Find and remove the trip from the Trip collection
         const trip = await Trip.findOneAndUpdate({ _id: args.tripId }, 
-          { $set: { location: args.location, journalEntry: args.journalEntry, startTripDate: args.startTripDate, endTripDate: args.endTripDate } },
+          { $set: { location: args.location, journalEntry: args.journalEntry } },
           { runValidators: true, new: true }
         )
         // Throw an error if the trip doesn't exist
