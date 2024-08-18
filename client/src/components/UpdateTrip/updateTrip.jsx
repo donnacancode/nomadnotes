@@ -1,6 +1,11 @@
 import { useState } from 'react';
+import Auth from '../../utils/auth';
+import { useMutation } from '@apollo/client';
+import { UPDATE_TRIP } from '../../utils/mutations';
+const { data: { username } } = Auth.getProfile();
 
 function UpdateTrip({ trip }) {
+  const tripId = trip._id
   const formattedStartDate = new Date(trip.startTripDate).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -13,24 +18,53 @@ function UpdateTrip({ trip }) {
   });
 
   const [userFormState, setUserFormState] = useState({
-    location: '',
-    journalEntry: '',
-    startTripDate: trip.startTripDate || new Date(),
-    endTripDate: trip.endTripDate || new Date(),
+    location: trip.location,
+    journalEntry: trip.journalEntry,
+    startTripDate: trip.startTripDate || null,
+    endTripDate: trip.endTripDate || null,
   });
 
-  const handleInputChange = (field, value) => {
+
+  const [updateTrip] = useMutation(UPDATE_TRIP);
+
+  const { data: { username } } = Auth.getProfile();
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
     setUserFormState({
       ...userFormState,
-      [field]: value,
+      [name]: value,
     });
-    onInputChange(trip._id, field, value); // Send changes back to the parent component
+    // onInputChange(trip._id, field, value); 
+    // Send changes back to the parent component
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onUpdateTrip(); // Trigger the update trip function passed from the parent
+  const handleOnFocus = (event) => {
+    const { name } = event.target;
+    setUserFormState({
+      ...userFormState,
+      [name]: '',
+    });
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { location, journalEntry, startTripDate, endTripDate } = userFormState;
+    
+      if (!startTripDate && !endTripDate) {
+
+        await updateDreamTrip({
+          variables: { tripId, location, journalEntry, username },
+        });
+      }
+      else {
+
+        await updateTrip({
+          variables: { tripId, location, journalEntry, username, startTripDate, endTripDate },
+        });
+      }
+    }
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -59,6 +93,7 @@ function UpdateTrip({ trip }) {
               type="text"
               value={userFormState.location}
               onChange={handleInputChange}
+              onFocus={handleOnFocus}
             />
       </div>
       <div>
@@ -70,6 +105,7 @@ function UpdateTrip({ trip }) {
               type="text"
               value={userFormState.journalEntry}
               onChange={handleInputChange}
+              onFocus={handleOnFocus}
             />
       </div>
       <button type="submit">Update Trip</button>

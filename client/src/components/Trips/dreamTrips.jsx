@@ -6,7 +6,10 @@ import { REMOVE_TRIP, UPDATE_TRIP } from '../../utils/mutations';
 import UpdateTrip from '../UpdateTrip/updateTrip';
 
 
+
+
 function DreamTrips({ trips }) {
+  console.log(trips)
   // GraphQL mutations for removing and updating trips
   const [removeTrip] = useMutation(REMOVE_TRIP);
   const [updateTrip] = useMutation(UPDATE_TRIP);
@@ -39,24 +42,13 @@ function DreamTrips({ trips }) {
     <div id="trips-box">
       {trips.map((trip) => {
         // Convert trip dates to a readable format
-        const formattedStartDate = new Date(trip.startTripDate).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        });
-        const formattedEndDate = new Date(trip.endTripDate).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        });
+
         const tripForm = formState[trip._id] || {};
         const showForm = showFormState[trip._id] || false; // Check if the form should be visible
         return (
           <div key={trip._id}>
             {!showForm && (
               <div>
-                <p>Start Date: {formattedStartDate}</p>
-                <p>End Date: {formattedEndDate}</p>
                 <h3>{trip.location}</h3>
                 <p>{trip.journalEntry}</p>
               </div>

@@ -23,7 +23,7 @@ const AddTrip = () => {
   const [addTrip, { loading: addTripLoading, data: dataAddTrip }] = useMutation(ADD_TRIP);
   const [addDreamTrip, { loading: dreamTripLoading, data: dataDreamTrip }] = useMutation(ADD_DREAM_TRIP);
 
-  const handleChange = (event) => {
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormState({
       ...userFormState,
@@ -94,7 +94,7 @@ const AddTrip = () => {
             name="location"
             type="text"
             value={userFormState.location}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
           <input
             className="form-input"
@@ -102,7 +102,7 @@ const AddTrip = () => {
             name="journalEntry"
             type="text"
             value={userFormState.journalEntry}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
           <DatePicker
             selected={userFormState.startTripDate}
