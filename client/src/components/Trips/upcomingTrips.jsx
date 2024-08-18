@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { REMOVE_TRIP, UPDATE_TRIP } from '../../utils/mutations';
 import UpdateTrip from '../UpdateTrip/updateTrip';
+
 function UpcomingTrips({ trips }) {
   // GraphQL mutations for removing and updating trips
   const [removeTrip] = useMutation(REMOVE_TRIP);
@@ -68,7 +69,7 @@ function UpcomingTrips({ trips }) {
               />
             )}
             <button onClick={() => toggleFormVisibility(trip._id)}>
-              {showForm ? 'Hide Update Form' : 'Show Update Form'}
+              {showForm ? 'Hide Update Form' : 'Update Trip'}
             </button>
             <button onClick={() => handleDeleteTrip(trip._id)}>
               Delete Trip
