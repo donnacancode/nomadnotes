@@ -30,6 +30,10 @@ function UpdateTrip({ trip }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onUpdateTrip(); // Trigger the update trip function passed from the parent
+
+
+
+    window.location.reload()
   };
 
   return (
