@@ -1,11 +1,27 @@
 
 
 function DreamTrips ({ trips }) {
-  trips.map((trip) => {console.log(trip.startTripDate)})
-  
+
+    function handleDeleteTrip(id) {
+        fetch(`/api/trips/${id}`, {
+        method: 'DELETE',
+        })
+        .then(() => {
+        window.location.reload();
+        });
+    }
+
+    function handleUpdateTrip(id) {
+        fetch(`/api/trips/${id}`, {
+        method: 'PUT',
+        })
+        .then(() => {
+        window.location.reload();
+        });
+    }
+    
       return (
           <div id="trips-box">
-              <h2>This will be upcoming trips</h2>
               {
                   trips.map((trip) => (
                       <div key={trip._id}>
@@ -13,6 +29,14 @@ function DreamTrips ({ trips }) {
                           <p>{trip.endTripDate}</p>
                           <h3>{trip.location}</h3>
                           <p>{trip.journalEntry}</p>
+                          <button
+                            onClick={() => handleDeleteTrip(trip._id)}>
+                            Delete Trip
+                          </button>
+                          <button
+                            onClick={() => handleUpdateTrip(trip._id)}>
+                            Update Trip
+                            </button>
                       </div>
                   ))
          }
@@ -20,6 +44,6 @@ function DreamTrips ({ trips }) {
       );
   }
   
-  export default UpcomingTrips;
+  export default DreamTrips;
   
   

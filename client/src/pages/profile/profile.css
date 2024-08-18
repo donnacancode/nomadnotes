@@ -20,8 +20,8 @@ html {
     opacity: 0.6; /* Adjusts transparency of the image */
     z-index: -1; /* Places the image behind the content */
 
-    /* gb added property */
-    position: sticky;
+    /* gb added fixed property */
+    position: fixed;
 }
 
 /* Header style for the profile page */

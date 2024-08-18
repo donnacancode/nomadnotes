@@ -32,11 +32,6 @@ const resolvers = {
       return await User.find({});
     },
 
-    // Query to fetch a single user by ID (commented out in this version)
-    // user: async (_, { id }) => {
-    //   return await User.findById(id);
-    // },
-
     // Query to fetch the currently authenticated user
     me: async (parent, args, context) => {
       // Check if the user is authenticated
@@ -97,13 +92,13 @@ const resolvers = {
     },
 
     addTrip : async (parent, args, context) => {
-      console.log(args)
+
       if(context.user) {
         const { location, journalEntry, startTripDate, endTripDate } = args;
         // Create the user with the provided username, email, and password
         const trip = await Trip.create({
-           location, 
-           journalEntry,
+          location, 
+          journalEntry,
           startTripDate,
           endTripDate, 
         });
@@ -115,9 +110,82 @@ const resolvers = {
         return user;
       } 
       // throw new AuthenticationError('You need to be logged in!');
+    },
+    addDreamTrip : async (parent, args, context) => {
+
+      if(context.user) {
+        const { username, location, journalEntry } = args;
+        // Create the user with the provided username, email, and password
+        console.log(location)
+        const trip = await Trip.create({
+           location, 
+           journalEntry,
+        });
+
+        console.log(trip)
+
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id  },
+          { $addToSet: { trips: trip } },
+          { new: true, runValidators: true }
+        );
+        return user;
+      } 
+      // throw new AuthenticationError('You need to be logged in!');
+    },
+    removeTrip: async (parent, args, context) => {
+
+      if (context.user) {
+        // Find and remove the trip from the Trip collection
+        const trip = await Trip.findOneAndDelete({ _id: args.tripId });
+
+        // Throw an error if the trip doesn't exist
+        if (!trip) {
+          throw new Error("Trip not found");
+        }
+
+        // Update the user's trips by removing the deleted trip's ID
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { trips: args.tripId } },
+          { new: true }
+        ).populate('trips'); // Populate trips after the update
+
+        return user;
+      }
+
+      // Throw an error if the user is not authenticated
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    updateTrip: async (parent, args, context) => {
+
+      if (context.user) {
+        // Find and remove the trip from the Trip collection
+        const trip = await Trip.findOneAndUpdate({ _id: args.tripId }, 
+          { $set: { location: args.location, journalEntry: args.journalEntry, startTripDate: args.startTripDate, endTripDate: args.endTripDate } },
+          { runValidators: true, new: true }
+        )
+        // Throw an error if the trip doesn't exist
+        if (!trip) {
+          throw new Error("Trip not found");
+        }
+
+        // Update the user's trips by removing the deleted trip's ID
+        // const user = await User.findOneAndUpdate(
+        //   { _id: context.user._id },
+        //   { $pull: { trips: args.tripId } },
+        //   { new: true }
+        // ).populate('trips'); // Populate trips after the update
+
+        return trip;
+      }
+
+      // Throw an error if the user is not authenticated
+      throw new AuthenticationError('You need to be logged in!');
     }
   }
-};
+}
+
 
 module.exports = resolvers;
 
