@@ -19,6 +19,9 @@ html {
     background-repeat: no-repeat; /* Prevents repeating the image */
     opacity: 0.6; /* Adjusts transparency of the image */
     z-index: -1; /* Places the image behind the content */
+
+    /* gb added property */
+    position: sticky;
 }
 
 /* Header style for the profile page */
@@ -32,12 +35,15 @@ header {
 
 
 /* Style for boxes in the profile section */
+
+/* THIS WAS THE ONLY CHANGE I MADE HERE. MAKING WIDTH AND HEIGHT DIFFERENT */
 #friends-box,
 #upcoming-trips-box,
+#previous-trips-box,
 #past-trips-box,
 #dream-trips-box {
-    width: 60px; /* Fixed width for each box */
-    height: 60px; /* Fixed height for each box */
+    width: 1060px; /* Fixed width for each box */
+    height: 3000px; /* Fixed height for each box */
     border: solid greenyellow; /* Solid border with greenyellow color */
     border-radius: 5px; /* Rounded corners */
     font-size: 10px; /* Small font size */
