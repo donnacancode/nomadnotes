@@ -70,7 +70,7 @@ function PreviousTrips({ trips }) {
               />
             )}
             <button onClick={() => toggleFormVisibility(trip._id)}>
-              {showForm ? 'Hide Update Form' : 'Update Trip'}
+              {showForm ? 'Discard Changes' : 'Update Trip'}
             </button>
             <button onClick={() => handleDeleteTrip(trip._id)}>
               Delete Trip

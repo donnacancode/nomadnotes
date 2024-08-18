@@ -8,7 +8,7 @@ import UpdateTrip from '../UpdateTrip/updateTrip';
 function UpcomingTrips({ trips }) {
   // GraphQL mutations for removing and updating trips
   const [removeTrip] = useMutation(REMOVE_TRIP);
-  const [updateTrip] = useMutation(UPDATE_TRIP);
+
   // Get username from Auth profile
   const { data: { username } } = Auth.getProfile();
   // Local state for handling form data and form visibility
@@ -69,7 +69,7 @@ function UpcomingTrips({ trips }) {
               />
             )}
             <button onClick={() => toggleFormVisibility(trip._id)}>
-              {showForm ? 'Hide Update Form' : 'Update Trip'}
+              {showForm ? 'Discard Changes' : 'Update Trip'}
             </button>
             <button onClick={() => handleDeleteTrip(trip._id)}>
               Delete Trip
