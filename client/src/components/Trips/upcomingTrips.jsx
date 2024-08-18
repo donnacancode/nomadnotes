@@ -92,6 +92,9 @@ function UpcomingTrips ({ trips }) {
                   <form onSubmit={handleUpdateTrip}>
                   <p>Start Date: {formattedStartDate}</p>
                     <input
+                    className="form-input"
+                    placeholder="Location of trip"
+                    name="location"
                       type="date"
                       value={tripForm.startTripDate || new Date(trip.startTripDate).toISOString().split('T')[0]}
                       onChange={(e) => handleInputChange(trip._id, 'startTripDate', e.target.value)}
@@ -99,9 +102,11 @@ function UpcomingTrips ({ trips }) {
 
                   <p>End Date: {formattedEndDate}</p>
                     <input
+                     className="form-input"
+                     placeholder="Location of trip"
                       type="date"
                       value={tripForm.endTripDate || new Date(trip.endTripDate).toISOString().split('T')[0]}
-                      onChange={(e) => handleInputChange(trip._id, 'endTripDate', e.target.value)}
+                      onChange={handleInputChange(trip._id, 'endTripDate', e.target.value)}
                     />
 
                   <h3>{trip.location}</h3>
