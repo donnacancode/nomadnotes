@@ -24,19 +24,13 @@ Enter your credentials in the login form and click "Sign In".
 
 Profile Page:
 
-There you'll be routed to your profile page
+There you'll be routed to your profile page.
 
-You'll be able to view past trips, upcoming trips, and dream trips.
+To create a trip you'll have an option to "Add a Trip" on your profile dashboard.
 
-If you want to create a trip navigate to the dashboard and click on "Create Trip".
+Once you  click "Submit". The trips will render in one of the following categories - upcoming trips, previous trips, and dream trips.
 
-Fill out the form with a title and content for your trip, then click "Submit".
-
-Your trips will appear on your profile page.
-
-Deleting Trips:
-
-Users can also delete their own trips by clicking on "Delete".
+Happy Travels!
 
 ## Technologies Used
 
