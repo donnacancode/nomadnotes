@@ -1,0 +1,76 @@
+/* Container for the Add Trip form */
+.add-trip-container {
+  background-color: rgba(94, 157, 92, 0.4); /* Semi-transparent background */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px auto; /* Center the form horizontally */
+  width: 75%; /* 3/4 width of the page */
+  border: solid rgba(94, 157, 92, 0.8); /* Matching border color */
+}
+
+/* Style for the heading */
+.add-trip-container h4 {
+  font-family: "Shadows Into Light Two", cursive;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: white;
+  width: 100%;
+}
+
+/* Style for the form */
+.add-trip-container form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  width: 100%;
+}
+
+/* Style for the input fields (Location, Journal Entry, Start Date, End Date) */
+.add-trip-container .form-input,
+.add-trip-container .react-datepicker-wrapper {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid rgba(94, 157, 92, 0.9);
+  border-radius: 5px;
+  font-family: "Lora", serif;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-sizing: border-box;
+  flex: 1 1 calc(50% - 15px); /* Two fields per row */
+  min-width: 200px; /* Minimum width for smaller screens */
+}
+
+/* Ensure the date picker input spans the full width */
+.add-trip-container .react-datepicker__input-container input {
+  width: 100%;
+}
+
+/* Style for the checkbox label (Dream Trip) */
+.add-trip-container label {
+  font-size: 1rem;
+  font-family: "Lora", serif;
+  display: block; /* New line for the checkbox */
+  margin-top: 15px;
+  color: white;
+  width: 100%; /* Ensure it spans the full width */
+}
+
+/* Style for the submit button */
+.add-trip-container button {
+  background-color: rgba(53, 124, 53, 1); /* Darker green button */
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; /* Full width for the button */
+  margin-top: 15px; /* Space above the button */
+}
+
+/* Hover effect for the submit button */
+.add-trip-container button:hover {
+  background-color: rgba(43, 104, 43, 1);
+}

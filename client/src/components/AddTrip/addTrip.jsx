@@ -1,15 +1,16 @@
-import { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { ADD_TRIP } from '../../utils/mutations';
-import { ADD_DREAM_TRIP } from '../../utils/mutations';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import Auth from '../../utils/auth';
+import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { ADD_TRIP } from "../../utils/mutations";
+import { ADD_DREAM_TRIP } from "../../utils/mutations";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Auth from "../../utils/auth";
+import "./addTrip.css";
 
 const AddTrip = () => {
   const [userFormState, setFormState] = useState({
-    location: '',
-    journalEntry: '',
+    location: "",
+    journalEntry: "",
     tripDate: new Date(),
     startTripDate: new Date(),
     endTripDate: new Date(),
@@ -17,11 +18,14 @@ const AddTrip = () => {
 
   const [dreamTrip, setDreamTrip] = useState(false);
 
+  const {
+    data: { username },
+  } = Auth.getProfile();
 
-  const { data: { username } } = Auth.getProfile();
-
-  const [addTrip, { loading: addTripLoading, data: dataAddTrip }] = useMutation(ADD_TRIP);
-  const [addDreamTrip, { loading: dreamTripLoading, data: dataDreamTrip }] = useMutation(ADD_DREAM_TRIP);
+  const [addTrip, { loading: addTripLoading, data: dataAddTrip }] =
+    useMutation(ADD_TRIP);
+  const [addDreamTrip, { loading: dreamTripLoading, data: dataDreamTrip }] =
+    useMutation(ADD_DREAM_TRIP);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -42,31 +46,36 @@ const AddTrip = () => {
     event.preventDefault();
 
     try {
-      const { location, journalEntry, startTripDate, endTripDate } = userFormState;
-    
-      console.log(dreamTrip)
-      if (dreamTrip == true) {
-        console.log(dreamTrip)
-      await addDreamTrip({
-        variables: { location, journalEntry, username },
-      });
-      }
+      const { location, journalEntry, startTripDate, endTripDate } =
+        userFormState;
 
-      else {
+      console.log(dreamTrip);
+      if (dreamTrip == true) {
+        console.log(dreamTrip);
+        await addDreamTrip({
+          variables: { location, journalEntry, username },
+        });
+      } else {
         await addTrip({
-          variables: { location, journalEntry, startTripDate, endTripDate, username },
-        })
+          variables: {
+            location,
+            journalEntry,
+            startTripDate,
+            endTripDate,
+            username,
+          },
+        });
       }
 
       setFormState({
-        location: '',
-        journalEntry: '',
+        location: "",
+        journalEntry: "",
         startTripDate: new Date(),
         endTripDate: new Date(),
       });
       setDreamTrip(false); // Reset dream trip checkbox
 
-      window.location.reload()
+      window.location.reload();
     } catch (e) {
       console.error(e);
     }
@@ -84,54 +93,49 @@ const AddTrip = () => {
   };
 
   return (
-    <div>
+    <div className="add-trip-container">
       <h4>Add Trip</h4>
-
-      <div>
-        <form onSubmit={handleFormSubmit}>
+      <form onSubmit={handleFormSubmit}>
+        <input
+          className="form-input location-input"
+          placeholder="Location of trip"
+          name="location"
+          type="text"
+          value={userFormState.location}
+          onChange={handleChange}
+        />
+        <input
+          className="form-input journal-input"
+          placeholder="Journal entry"
+          name="journalEntry"
+          type="text"
+          value={userFormState.journalEntry}
+          onChange={handleChange}
+        />
+        <DatePicker
+          selected={userFormState.startTripDate}
+          onChange={(date) => handleDateChange(date, "startTripDate")}
+          className="form-input start-date"
+          placeholderText="Start Date"
+          disabled={dreamTrip}
+        />
+        <DatePicker
+          selected={userFormState.endTripDate}
+          onChange={(date) => handleDateChange(date, "endTripDate")}
+          className="form-input end-date"
+          placeholderText="End Date"
+          disabled={dreamTrip}
+        />
+        <label>
           <input
-            className="form-input"
-            placeholder="Location of trip"
-            name="location"
-            type="text"
-            value={userFormState.location}
-            onChange={handleChange}
+            type="checkbox"
+            checked={dreamTrip}
+            onChange={handleDreamTripChange}
           />
-          <input
-            className="form-input"
-            placeholder="Journal entry"
-            name="journalEntry"
-            type="text"
-            value={userFormState.journalEntry}
-            onChange={handleChange}
-          />
-          <DatePicker
-            selected={userFormState.startTripDate}
-            onChange={(date) => handleDateChange(date, 'startTripDate')}
-            className="form-input"
-            placeholderText='Start Date'
-            disabled={dreamTrip}
-          />
-          <DatePicker
-            selected={userFormState.endTripDate}
-            onChange={(date) => handleDateChange(date, 'endTripDate')}
-            className="form-input"
-            placeholderText='End Date'
-            disabled={dreamTrip}
-          />
-          <label>
-            <input
-              type="checkbox"
-              checked={dreamTrip}
-              onChange={handleDreamTripChange}
-            />
-            Dream Trip (no specific dates)
-          </label>
-          <button style={{ cursor: 'pointer' }} type="submit">
-            Submit
-          </button>
-        </form>
-      </div>
+          Dream Trip (no specific dates)
+        </label>
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 };
