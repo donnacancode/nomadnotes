@@ -9,13 +9,14 @@ import UpdateTrip from '../UpdateTrip/updateTrip';
 function DreamTrips({ trips }) {
   // GraphQL mutations for removing and updating trips
   const [removeTrip] = useMutation(REMOVE_TRIP);
-  const [updateTrip] = useMutation(UPDATE_TRIP);
+
   // Get username from Auth profile
   const { data: { username } } = Auth.getProfile();
+
   // Local state for handling form data and form visibility
   const [formState, setFormState] = useState({});
   const [showFormState, setShowFormState] = useState({});
-  // Handle input changes for form data
+
 
   // Toggle the visibility of the form for each trip
   const toggleFormVisibility = (tripId) => {
@@ -33,7 +34,7 @@ function DreamTrips({ trips }) {
       console.error('Error deleting trip:', error);
     }
   };
-  // Handle trip update
+
 
   return (
     <div id="trips-box">
@@ -55,8 +56,6 @@ function DreamTrips({ trips }) {
           <div key={trip._id}>
             {!showForm && (
               <div>
-                <p>Start Date: {formattedStartDate}</p>
-                <p>End Date: {formattedEndDate}</p>
                 <h3>{trip.location}</h3>
                 <p>{trip.journalEntry}</p>
               </div>

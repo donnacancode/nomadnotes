@@ -9,7 +9,7 @@ import UpdateTrip from '../UpdateTrip/updateTrip';
 function PreviousTrips({ trips }) {
   // GraphQL mutations for removing and updating trips
   const [removeTrip] = useMutation(REMOVE_TRIP);
-  const [updateTrip] = useMutation(UPDATE_TRIP);
+
   // Get username from Auth profile
   const { data: { username } } = Auth.getProfile();
   // Local state for handling form data and form visibility
@@ -33,7 +33,7 @@ function PreviousTrips({ trips }) {
       console.error('Error deleting trip:', error);
     }
   };
-  // Handle trip update
+
 
   return (
     <div id="trips-box">
