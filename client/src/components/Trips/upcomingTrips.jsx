@@ -32,7 +32,7 @@ function UpcomingTrips({ trips }) {
       console.error('Error deleting trip:', error);
     }
   };
-  // Handle trip update
+
 
   return (
     <div id="trips-box">

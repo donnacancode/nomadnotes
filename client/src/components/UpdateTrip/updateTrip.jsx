@@ -52,7 +52,7 @@ function UpdateTrip({ trip }) {
     const { location, journalEntry, startTripDate, endTripDate } = userFormState;
     
       if (!startTripDate && !endTripDate) {
-
+        console.log(tripId)
         await updateDreamTrip({
           variables: { tripId, location, journalEntry, username },
         });

@@ -184,7 +184,7 @@ console.log(args)
       throw new AuthenticationError('You need to be logged in!');
     },
     updateDreamTrip: async (parent, args, context) => {
-
+console.log(args)
       if (context.user) {
         // Find and remove the trip from the Trip collection
         const trip = await Trip.findOneAndUpdate({ _id: args.tripId }, 
@@ -196,12 +196,6 @@ console.log(args)
           throw new Error("Trip not found");
         }
 
-        // Update the user's trips by removing the deleted trip's ID
-        // const user = await User.findOneAndUpdate(
-        //   { _id: context.user._id },
-        //   { $pull: { trips: args.tripId } },
-        //   { new: true }
-        // ).populate('trips'); // Populate trips after the update
 
         return trip;
       }

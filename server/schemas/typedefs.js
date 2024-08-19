@@ -47,7 +47,7 @@ scalar Date
     addDreamTrip(username: String!, location: String!, journalEntry: String!): User
     removeTrip(tripId: ID!): User  # New mutation for removing a trip
     updateTrip(tripId: ID! location: String!, journalEntry: String!, startTripDate: Date!, endTripDate: Date!): User
-    updateDreamTrip(tripId: ID! location: String!, journalEntry: String!): User
+    updateDreamTrip(tripId: ID! location: String!, journalEntry: String!): Trip
     addComment(commentText: String!): Comment  
     removeComment(commentId: ID!): Comment  
 

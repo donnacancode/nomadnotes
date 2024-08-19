@@ -85,15 +85,10 @@ export const UPDATE_TRIP = gql`
 
 
 export const UPDATE_DREAM_TRIP = gql`
-  mutation udpateTrip($tripId: ID!, $location: String!, $journalEntry: String! ) {
+  mutation udpateTrip($tripId: ID!, $location: String!, $journalEntry: String!) {
     updateTrip(tripId: $tripId, location: $location, journalEntry: $journalEntry) {
-      _id
-      username
       trips {
-        _id
-        location
-        startTripDate
-        endTripDate
+        _id   
       }
     }
   }
