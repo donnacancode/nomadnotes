@@ -1,18 +1,19 @@
 /* Container for the Add Trip form */
 .add-trip-container {
-  background-color: rgba(94, 157, 92, 0.4); /* Semi-transparent background */
+  background-color: rgba(165, 192, 223, 0.5);
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 20px auto; /* Center the form horizontally */
-  width: 75%; /* 3/4 width of the page */
-  border: solid rgba(94, 157, 92, 0.8); /* Matching border color */
+  margin: 20px auto;
+  width: 75%;
+  border: solid rgba(165, 192, 223, 0.9);
 }
 
 /* Style for the heading */
 .add-trip-container h4 {
   font-family: "Shadows Into Light Two", cursive;
-  font-size: 1.8rem;
+  font-size: 2.5rem;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
   margin-bottom: 20px;
   text-align: center;
   color: white;
@@ -32,7 +33,7 @@
 .add-trip-container .react-datepicker-wrapper {
   padding: 10px;
   font-size: 1rem;
-  border: 1px solid rgba(94, 157, 92, 0.9);
+  border: 0.5px solid rgba(133, 107, 70, 0.849);
   border-radius: 5px;
   font-family: "Lora", serif;
   background-color: rgba(255, 255, 255, 0.7);
@@ -48,29 +49,31 @@
 
 /* Style for the checkbox label (Dream Trip) */
 .add-trip-container label {
-  font-size: 1rem;
+  font-size: 1.5rem;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
   font-family: "Lora", serif;
-  display: block; /* New line for the checkbox */
+  display: block;
   margin-top: 15px;
   color: white;
-  width: 100%; /* Ensure it spans the full width */
+  width: 100%;
 }
 
 /* Style for the submit button */
 .add-trip-container button {
-  background-color: rgba(53, 124, 53, 1); /* Darker green button */
+  background-color: rgba(133, 107, 70, 0.774);
+  font-family: "Shadows Into Light Two", cursive;
   color: white;
   padding: 10px;
-  border: none;
+  border: 0.5px solid rgba(165, 192, 223);
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: 100%; /* Full width for the button */
-  margin-top: 15px; /* Space above the button */
+  width: 100%;
+  margin-top: 15px;
 }
 
 /* Hover effect for the submit button */
 .add-trip-container button:hover {
-  background-color: rgba(43, 104, 43, 1);
+  background-color: rgb(133, 107, 70);
 }
