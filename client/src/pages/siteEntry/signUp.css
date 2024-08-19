@@ -32,7 +32,7 @@
 .sign-up-header {
   margin: 20px 0;
   padding-top: 30px;
-  font-family: "Shadows Into Light Two", cursive;
+  font-family: "Kalam";
   font-size: 5rem;
   color: white;
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
@@ -50,37 +50,32 @@
 /* Styling the sign-up form container */
 .sign-up-box {
   margin: 20px auto;
-  background-color: rgba(60, 60, 60, 0.9); /* Dark grey background */
+  background-color: rgba(60, 60, 60, 0.9);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
-  max-width: 400px; /* Set a max-width to center the box on the page */
+  max-width: 400px;
 }
 
 /* Styling for the sign-up title */
 .sign-up-title {
   margin: 20px 0;
-  font-family: "Shadows Into Light Two", cursive;
+  font-family: "Kalam";
   font-size: 2rem;
-  color: white; /* White text color */
+  color: white;
 }
 
 /* Styling for the input fields */
 .sign-up-input {
-  width: calc(100% - 20px); /* Reduce width slightly to account for padding */
+  width: calc(100% - 20px);
   padding: 10px;
-  margin: 10px auto; /* Center the input fields */
+  margin: 10px auto;
   font-size: 1rem;
-  border: 1px solid #a9a9a9; /* Lighter grey border */
+  border: 1px solid #a9a9a9;
   border-radius: 5px;
   font-family: "Lora", serif;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.85
-  ); /* Slightly more opaque background for input fields */
+  background-color: rgba(255, 255, 255, 0.85);
   display: block;
 }
 
@@ -89,11 +84,11 @@
   width: 100%;
   padding: 10px;
   margin: 20px 0;
-  background-color: rgba(80, 80, 80, 1); /* Medium-dark grey button */
+  background-color: rgba(80, 80, 80, 1);
   color: white;
   border: none;
   border-radius: 5px;
-  font-family: "Shadows Into Light Two", cursive;
+  font-family: "Kalam";
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -101,5 +96,5 @@
 
 /* Hover effect for the submit button */
 .sign-up-button:hover {
-  background-color: rgba(50, 50, 50, 1); /* Darker grey on hover */
+  background-color: rgba(50, 50, 50, 1);
 }
