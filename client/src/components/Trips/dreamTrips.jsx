@@ -56,8 +56,6 @@ function DreamTrips({ trips }) {
           <div key={trip._id}>
             {!showForm && (
               <div>
-                <p>Start Date: {formattedStartDate}</p>
-                <p>End Date: {formattedEndDate}</p>
                 <h3>{trip.location}</h3>
                 <p>{trip.journalEntry}</p>
               </div>

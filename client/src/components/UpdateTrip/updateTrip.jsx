@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Auth from '../../utils/auth';
 import { useMutation } from '@apollo/client';
-import { UPDATE_TRIP } from '../../utils/mutations';
+import { UPDATE_TRIP, UPDATE_DREAM_TRIP } from '../../utils/mutations';
 
 
 function UpdateTrip({ trip }) {
@@ -26,6 +26,8 @@ function UpdateTrip({ trip }) {
   });
 
   const [updateTrip] = useMutation(UPDATE_TRIP);
+  const [updateDreamTrip] = useMutation(UPDATE_DREAM_TRIP);
+  
 
   const { data: { username } } = Auth.getProfile();
 
@@ -52,13 +54,13 @@ function UpdateTrip({ trip }) {
     const { location, journalEntry, startTripDate, endTripDate } = userFormState;
     
       if (!startTripDate && !endTripDate) {
-        console.log(tripId)
+        console.log(updateDreamTrip)
         await updateDreamTrip({
           variables: { tripId, location, journalEntry, username },
         });
       }
       else {
-console.log(tripId)
+
         await updateTrip({
           variables: { tripId, location, journalEntry, username, startTripDate, endTripDate },
         });
@@ -75,20 +77,24 @@ console.log(tripId)
   return (
     <form onSubmit={handleSubmit}>
       <div>
-      <p>Start Date: {formattedStartDate} </p>
-        {/* <input
+      {userFormState.startTripDate && (
+        <p>Start Date: {formattedStartDate}</p>
+        /* <input
           type="date"
           value={userFormState.startTripDate ? new Date(userFormState.startTripDate).toISOString().split('T')[0] : ''}
           onChange={(e) => handleInputChange('startTripDate', e.target.value)}
-        /> */}
+        /> */
+      )}
       </div>
       <div>
-      <p>End Date: {formattedEndDate} </p>
-        {/* <input
+      {userFormState.endTripDate && (
+        <p>End Date: {formattedEndDate} </p>
+        /* <input
           type="date"
           value={userFormState.endTripDate ? new Date(userFormState.endTripDate).toISOString().split('T')[0] : ''}
           onChange={(e) => handleInputChange('endTripDate', e.target.value)}
-        /> */}
+        /> */
+      )}
       </div>
       <div>
       <h3>{trip.location}</h3>

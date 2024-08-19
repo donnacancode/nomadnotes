@@ -158,7 +158,7 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     updateTrip: async (parent, args, context) => {
-console.log(args)
+console.log(context.user)
       if (context.user) {
         // Find and remove the trip from the Trip collection
         const trip = await Trip.findOneAndUpdate({ _id: args.tripId }, 
@@ -184,7 +184,7 @@ console.log(args)
       throw new AuthenticationError('You need to be logged in!');
     },
     updateDreamTrip: async (parent, args, context) => {
-console.log(args)
+console.log(context.user)
       if (context.user) {
         // Find and remove the trip from the Trip collection
         const trip = await Trip.findOneAndUpdate({ _id: args.tripId }, 
