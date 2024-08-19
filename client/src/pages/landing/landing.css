@@ -38,11 +38,11 @@ main > div {
 
 /* Heading style */
 h1 {
-  font-family: "Shadows Into Light Two", cursive; /* Custom cursive font */
+  font-family: "Kalam"; /* Custom cursive font */
   font-style: italic; /* Italicize the text */
   font-size: 10rem; /* Large font size for prominence */
   margin-bottom: 1rem; /* Space below the heading */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Adds a shadow effect to enhance readability */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds a shadow effect to enhance readability */
 }
 
 /* Paragraph style */
@@ -65,7 +65,7 @@ p {
   border: none; /* Remove default border */
   color: white; /* White text color */
   padding: 1rem 3rem; /* Padding inside the button */
-  font-family: "Shadows Into Light Two", cursive; /* Custom cursive font */
+  font-family: "Kalam"; /* Custom cursive font */
   font-size: 2rem; /* Font size for readability */
   cursor: pointer; /* Pointer cursor on hover */
   transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effects */

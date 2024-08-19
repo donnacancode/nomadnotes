@@ -12,7 +12,7 @@ header {
   color: white;
   text-align: center;
   border-bottom: 1px solid rgba(133, 107, 70, 0.774); /* Brown border */
-  font-family: "Shadows Into Light Two", cursive;
+  font-family: "Kalam";
   font-size: 2rem;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -26,7 +26,7 @@ header .brand-link {
   color: white;
   text-decoration: none;
   text-shadow: 2px 2px 2px rgba(0, 0, 0);
-  font-family: "Shadows Into Light Two", cursive;
+  font-family: "Kalam";
   font-size: 2rem;
 }
 
@@ -37,7 +37,7 @@ header .brand-link {
   border: none;
   text-shadow: 2px 2px 2px rgba(0, 0, 0);
   border-radius: 5px;
-  font-family: "Shadows Into Light Two", cursive;
+  font-family: "Kalam";
   font-size: 2rem;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -89,7 +89,7 @@ header .brand-link {
 #main-content h1 {
   color: #ffffff; /* White color */
   font-size: 4rem; /* Slightly larger font size */
-  font-family: "Shadows Into Light Two", cursive;
+  font-family: "Kalam";
   margin-bottom: 1rem;
   text-align: left;
   text-shadow: 4px 4px 8px rgba(0, 0, 0); /* Stronger shadow for more impact */
@@ -107,7 +107,7 @@ header .brand-link {
 
 /* Style for the headings within each trip entry */
 #trips-box h3 {
-  font-family: "Shadows Into Light Two", cursive;
+  font-family: "Kalam";
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
   color: rgba(106, 85, 55);
@@ -117,7 +117,7 @@ header .brand-link {
 #upcoming-trips-box > a,
 #previous-trips-box > a,
 #dream-trips-box > a {
-  font-family: "Shadows Into Light Two", cursive;
+  font-family: "Kalam";
   text-shadow: 4px 4px 4px rgba(0, 0, 0);
   font-size: 2rem;
   color: white;
@@ -135,7 +135,7 @@ header .brand-link {
   height: 300px;
   border: solid rgba(165, 192, 223, 0.9); /* Blue border */
   border-radius: 10px;
-  font-family: "Shadows Into Light Two", cursive;
+  font-family: "Kalam";
   background-color: rgba(133, 107, 70, 0.5); /* Brown background */
   padding: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -159,7 +159,7 @@ header .brand-link {
 
 /* Style for paragraphs and long text within trip entries */
 #trips-box p {
-  font-family: "Lora", serif;
+  font-family: "Kalam";
   margin: 0.5rem 0;
   font-size: 1rem;
   line-height: 1.2rem;
@@ -182,7 +182,7 @@ header .brand-link {
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
-  font-family: "Shadows Into Light Two", cursive;
+  font-family: "Kalam";
   font-size: 1rem;
   cursor: pointer;
   margin: 5px 0;

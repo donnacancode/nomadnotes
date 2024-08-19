@@ -31,9 +31,9 @@
 .login-header {
   margin: 20px 0;
   padding-top: 30px;
-  font-family: "Shadows Into Light Two", cursive;
+  font-family: "Kalam";
   font-size: 5rem;
-  color: white; /* Lighter shade of orange */
+  color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
@@ -42,43 +42,38 @@
   margin: 20px 0;
   font-family: "Lora", serif;
   font-size: 1.5rem;
-  color: #ffd166; /* Lighter shade of orange */
+  color: #ffd166;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 /* Styling for the login box */
 .login-box {
   margin: 20px auto;
-  background-color: rgba(233, 146, 33, 0.945); /* Main orange color */
+  background-color: rgba(233, 146, 33, 0.945);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 400px; /* Set a max-width to center the box on the page */
+  max-width: 400px;
 }
 
 /* Styling for the login title */
 .login-title {
   margin: 20px 0;
-  font-family: "Shadows Into Light Two", cursive;
+  font-family: "Kalam";
   font-size: 2rem;
-  color: #ffffff; /* White text color */
+  color: #ffffff;
 }
 
 /* Styling for the input fields */
 .login-input {
-  width: calc(100% - 20px); /* Reduce width slightly to account for padding */
+  width: calc(100% - 20px);
   padding: 10px;
-  margin: 10px auto; /* Center the input fields */
+  margin: 10px auto;
   font-size: 1rem;
-  border: 1px solid #ffd166; /* Lighter shade of orange */
+  border: 1px solid #ffd166;
   border-radius: 5px;
   font-family: "Lora", serif;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.85
-  ); /* Slightly more opaque background for input fields */
+  background-color: rgba(255, 255, 255, 0.85);
   display: block;
 }
 
@@ -87,16 +82,11 @@
   width: 100%;
   padding: 10px;
   margin: 20px 0;
-  background-color: rgba(
-    214,
-    93,
-    17,
-    1
-  ); /* Darker shade of orange for the button */
+  background-color: rgba(214, 93, 17, 1);
   color: white;
   border: none;
   border-radius: 5px;
-  font-family: "Shadows Into Light Two", cursive;
+  font-family: "Kalam";
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -104,10 +94,5 @@
 
 /* Hover effect for the login button */
 .login-button:hover {
-  background-color: rgba(
-    199,
-    83,
-    13,
-    1
-  ); /* Even darker shade of orange on hover */
+  background-color: rgba(199, 83, 13, 1);
 }
