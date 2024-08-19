@@ -12,6 +12,32 @@
 
 This website does not require installation! Sit back, relax, and create your new nomad notes!
 
+## Usage
+
+Creating a New Account:
+
+Click on "Sign Up" and fill out the registration form.
+
+Logging In:
+
+Enter your credentials in the login form and click "Sign In".
+
+Profile Page:
+
+There you'll be routed to your profile page
+
+You'll be able to view past trips, upcoming trips, and dream trips.
+
+If you want to create a trip navigate to the dashboard and click on "Create Trip".
+
+Fill out the form with a title and content for your trip, then click "Submit".
+
+Your trips will appear on your profile page.
+
+Deleting Trips:
+
+Users can also delete their own trips by clicking on "Delete".
+
 ## Technologies Used
 
 ![Node.js](https://img.shields.io/badge/Node.js-green)<br>
