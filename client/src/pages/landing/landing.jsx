@@ -16,7 +16,7 @@ const Landing = () => {
           {/* Main heading of the landing page */}
           <h1>Nomad Notes</h1>
           {/* Subheading with a tagline */}
-          <p>Your Gateway to the World!</p>
+          <p>Wander the World, Share your Stories</p>
           {/* Navigation links for Log In and Sign Up */}
           <Link to="/login" className="btn btn-primary btn-lg">
             Log In
@@ -36,4 +36,3 @@ const Landing = () => {
 };
 
 export default Landing;
-

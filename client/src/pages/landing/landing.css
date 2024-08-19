@@ -56,7 +56,12 @@ p {
 
 /* Button styles */
 .btn {
-  background-color: rgba(218, 127, 63, 0.8); /* Semi-transparent orange background */
+  background-color: rgba(
+    66,
+    207,
+    231,
+    0.8
+  ); /* Semi-transparent orange background */
   border: none; /* Remove default border */
   color: white; /* White text color */
   padding: 1rem 3rem; /* Padding inside the button */
@@ -71,7 +76,12 @@ p {
 }
 
 .btn:hover {
-  background-color: rgba(218, 127, 63, 1); /* Fully opaque background on hover */
+  background-color: rgba(
+    218,
+    127,
+    63,
+    1
+  ); /* Fully opaque background on hover */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
 }
 

@@ -1,6 +1,6 @@
 import React from "react"; // Import React for using JSX
 import Footer from "../../components/footer"; // Import Footer component for the page footer
-import "./siteEntry.css"; // Import CSS for styling the login page
+import "./login.css"; // Import CSS for styling the login page
 import baobabs from "../../assets/baobabs.png"; // Import background image for the login page
 import { useState } from "react"; // Import useState hook for managing local state
 import Auth from "../../utils/auth"; // Import authentication utility for managing user sessions
@@ -58,44 +58,38 @@ function Login() {
   };
 
   return (
-    <div>
-      {/* Background image for the login page */}
+    <div className="login-page">
       <img src={baobabs} alt="Baobabs" className="bg" />
-      <div style={{ textAlign: "center" }}>
-        {/* Page header */}
-        <h1 style={{ margin: "20px 0", paddingTop: "200px" }}>
-          Welcome to Nomad Notes
-        </h1>
-        <p style={{ margin: "20px 0" }}>Your Gateway to the World</p>
-        <div className="login-box" style={{ margin: "20px 0" }}>
-          {/* Login form */}
-          <h2 style={{ margin: "20px 0" }}>Login</h2>
+      <div className="login-content">
+        <h1 className="login-header">Welcome Back!</h1>
+        {/* <p className="login-subheader">Your Gateway to the World</p> */}
+        <div className="login-box">
+          <h2 className="login-title">Login</h2>
           <form onSubmit={handleFormSubmit}>
             <input
               type="text"
               placeholder="Username"
               name="username"
               required
-              style={{ margin: "20px 0" }}
               value={userFormState.username}
               onChange={handleChange}
+              className="login-input"
             />
             <input
               type="password"
               placeholder="Password"
               name="password"
               required
-              style={{ margin: "20px 0" }}
               value={userFormState.password}
               onChange={handleChange}
+              className="login-input"
             />
-            <button type="submit" style={{ margin: "20px 0" }}>
-              Login
+            <button type="submit" className="login-button">
+              Away we go!
             </button>
           </form>
         </div>
       </div>
-      {/* Footer component */}
       <Footer />
     </div>
   );

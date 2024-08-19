@@ -1,117 +1,87 @@
-import { useState } from 'react'; // Import useState hook for managing local state
-import Header from '../../components/header'; // Import Header component for the page header
-import Footer from '../../components/footer'; // Import Footer component for the page footer
-import { Link } from 'react-router-dom'; // Import Link component for navigation
-import { useMutation } from '@apollo/client'; // Import useMutation hook for GraphQL mutations
-import { ADD_USER } from '../../utils/mutations'; // Import GraphQL mutation for adding a user
-import Auth from '../../utils/auth'; // Import authentication utility for managing user sessions
-import './siteEntry.css'; // Import CSS for styling the signup page
+import { useState } from "react";
+import Footer from "../../components/footer";
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../../utils/mutations";
+import Auth from "../../utils/auth";
+import "./signUp.css";
+import mountains from "../../assets/mountains.png"; // Import the background image
 
 const SignUp = () => {
-    // Initialize form state with username, email, and password fields
-    const [userFormState, setFormState] = useState({
-        username: '',
-        email: '',
-        password: '',
+  const [userFormState, setFormState] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const [addUser] = useMutation(ADD_USER);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...userFormState,
+      [name]: value,
     });
+  };
 
-    // Define mutation hook for adding a new user
-    const [addUser, { error, data }] = useMutation(ADD_USER);
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
 
-    // Handle changes in form input fields
-    const handleChange = (event) => {
-        const { name, value } = event.target;
+    try {
+      const { username, email, password } = userFormState;
 
-        // Update state with new values from form inputs
-        setFormState({
-            ...userFormState,
-            [name]: value,
-        });
-    };
+      const { data } = await addUser({
+        variables: { username, email, password },
+      });
 
-    // Handle form submission
-    const handleFormSubmit = async (event) => {
-        event.preventDefault(); // Prevent default form submission behavior
+      Auth.login(data.addUser.token);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
-        try {
-            const { username, email, password } = userFormState;
-
-            // Perform the mutation to add a new user
-
-            const { data } = await addUser({
-                variables: { username, email, password },
-            });
-
-
-            console.log(data); // Log response data for debugging
-
-            // Save token to local storage and redirect user upon successful signup
-            Auth.login(data.addUser.token);
-
-            if (data.addUser.token) {
-                Auth.login(data.addUser.token);
-            } else {
-                // User with the same username already exists
-                alert('Username is already taken');
-            }
-
-        } catch (e) {
-            console.error(e); // Log errors if signup fails
-        }
-    };
-
-    return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-            {/* Header component */}
-            <Header />
-            <div style={{ textAlign: 'center' }}>
-                {/* Main content */}
-                <div>
-                    <h4>Sign Up</h4>
-                    <form onSubmit={handleFormSubmit}>
-                        {/* Input field for username */}
-                        <input
-                            className="form-input"
-                            placeholder="Your username"
-                            name="username"
-                            type="text"
-                            value={userFormState.username}
-                            onChange={handleChange}
-                        />
-                        {/* Input field for email */}
-                        <input
-                            className="form-input"
-                            placeholder="Your email"
-                            name="email"
-                            type="email"
-                            value={userFormState.email}
-                            onChange={handleChange}
-                        />
-                        {/* Input field for password */}
-                        <input
-                            className="form-input"
-                            placeholder="******"
-                            name="password"
-                            type="password"
-                            value={userFormState.password}
-                            onChange={handleChange}
-                        />
-                        {/* Submit button */}
-                        <button
-                            style={{ cursor: 'pointer' }}
-                            type="submit"
-                        >
-                            Submit
-                        </button>
-                    </form>
-                </div>
-            </div>
-            {/* Footer component */}
-            <Footer />
+  return (
+    <div className="sign-up-page">
+      {/* Background image */}
+      <img src={mountains} alt="Mountains" className="bg" />
+      <div className="sign-up-content">
+        {/* Main header */}
+        <h1 className="sign-up-header">Welcome to Nomad Notes!</h1>
+        <div className="sign-up-box">
+          <h4 className="sign-up-title">Sign Up</h4>
+          <form onSubmit={handleFormSubmit}>
+            <input
+              className="sign-up-input"
+              placeholder="Your username"
+              name="username"
+              type="text"
+              value={userFormState.username}
+              onChange={handleChange}
+            />
+            <input
+              className="sign-up-input"
+              placeholder="Your email"
+              name="email"
+              type="email"
+              value={userFormState.email}
+              onChange={handleChange}
+            />
+            <input
+              className="sign-up-input"
+              placeholder="******"
+              name="password"
+              type="password"
+              value={userFormState.password}
+              onChange={handleChange}
+            />
+            <button className="sign-up-button" type="submit">
+              Submit
+            </button>
+          </form>
         </div>
-    );
+      </div>
+      <Footer />
+    </div>
+  );
 };
 
-export default SignUp; // Export SignUp component for use in other parts of the application
-
-
+export default SignUp;
