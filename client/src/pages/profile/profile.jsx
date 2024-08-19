@@ -6,7 +6,7 @@ import UpcomingTrips from "../../components/Trips/upcomingTrips";
 import PreviousTrips from "../../components/Trips/previousTrips";
 import DreamTrips from "../../components/Trips/dreamTrips";
 import "./profile.css";
-import northern_lights from "../../assets/northern_lights.png";
+import natl_park from "../../assets/natl_park.png";
 import { Navigate, useParams } from "react-router-dom";
 import { useQuery, useLazyQuery } from "@apollo/client";
 
@@ -64,11 +64,7 @@ const Profile = () => {
         <Header />
       </div>
       <main id="profile">
-        <img
-          src={northern_lights}
-          alt="Northern lights"
-          className="profileBg"
-        ></img>
+        <img src={natl_park} alt="Northern lights" className="profileBg"></img>
         {/* Main content */}
         <div id="main-content">
           <h1>Welcome, {user.username}!</h1>
